@@ -18,18 +18,18 @@
 @import 'bootstrap';
 
 h1, h2, h3 {
-    font-family: 'Orbitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
 }
 
 p {
-    font-family: 'Exo', sans-serif;
+  font-family: 'Exo', sans-serif;
 }
 
 .navbar {
-    background: #000000; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #000000 , #434343); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #000000 , #434343); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    border: none;
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #000000 , #434343); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #000000 , #434343); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border: none;
 }
 
 .navbar-default .navbar-brand, 
@@ -40,4 +40,40 @@ p {
     color: white;
     opacity: 0.75;
   }
+}
+
+.divider{ 
+  position: relative;
+  max-width: auto;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.center{
+  width: 150px;
+  height: 150px;
+  background: black;
+  margin: 0 auto;
+}
+
+.divider:before{
+  position: absolute;
+  content: "";
+  border-bottom: 1px solid;
+  left: -30px;
+  height: 25px;
+  width: 50%;
+  top: 50px;
+  z-index: -1;
+}
+
+.divider:after{
+  position: absolute;
+  content:"";
+  border-bottom: 1px solid;
+  right: -30px;
+  top: 50px;
+  height: 25px;
+  width: 50%;
+  z-index: -1;
 }
