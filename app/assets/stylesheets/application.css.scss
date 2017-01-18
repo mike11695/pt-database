@@ -17,14 +17,17 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+// Typography style for headers
 h1, h2, h3 {
   font-family: 'Orbitron', sans-serif;
 }
 
+// Typography style for paragraphs
 p {
   font-family: 'Exo', sans-serif;
 }
 
+// Nav styles
 .navbar {
   background: #000000; /* fallback for old browsers */
   background: -webkit-linear-gradient(to left, #000000 , #434343); /* Chrome 10-25, Safari 5.1-6 */
@@ -36,12 +39,22 @@ p {
 .navbar-default .navbar-nav >  li > a {
   color: white;
   font-family: 'Electrolize', sans-serif;
+  display: inline-block;
   &:hover {
     color: white;
     opacity: 0.75;
   }
 }
 
+.navbar-image {
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  float: left;
+  margin-top: -15px;
+}
+
+// Image styles
 .divider{ 
   position: relative;
   max-width: auto;
