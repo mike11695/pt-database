@@ -8,7 +8,8 @@
       <div class="well contact-well">
         <%= form_for @contact do |f| %>
         
-        <%= flash[:notice] %>
+        <%= flash[:error] %>
+        <%= flash[:success] %>
         
         <div class="form-group">
             <%= f.label :name %>
