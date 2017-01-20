@@ -1,4 +1,7 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :only_current_user
+  
   # GET to /users/:user_id/profile/new
   def new
     # Render blank profile details form
@@ -46,7 +49,11 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:avatar, :title, :description)
     end
     def only_current_user
+      if user_signed_in?
         @user = User.find( params[:user_id] )
-        redirect_to(root_url) unless @user == current_user
+      else
+        @admin = Admin.find( params[:admin_id] )
+      end
+        redirect_to(root_url) unless @user == current_user || @admin 
     end
 end
