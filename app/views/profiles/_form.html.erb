@@ -1,0 +1,13 @@
+<%= form_for @profile, url: user_profile_path do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>: Add a short title like "My pets UFT" or "Painted Pets UFA" for example
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %>: Use this to explain about the pets, what you're seeking, etc.
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Update Profile", class: 'btn btn-primary' %>
+  </div>
+<% end %>
