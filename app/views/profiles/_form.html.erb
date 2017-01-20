@@ -1,4 +1,8 @@
-<%= form_for @profile, url: user_profile_path do |f| %>
+<%= form_for @profile, url: user_profile_path, :html => { :multipart => true } do |f| %>
+  <div class="form-group">
+    <%= f.label :avatar %>: Don't upload anything innappropriate or else :v
+    <%= f.file_field :avatar, class: 'form-control' %>
+  </div>
   <div class="form-group">
     <%= f.label :title %>: Add a short title like "My pets UFT" or "Painted Pets UFA" for example
     <%= f.text_field :title, class: 'form-control' %>
