@@ -42,6 +42,9 @@ gem 'hirb', '0.7.3'
 # Use devise to make users
 gem 'devise'
 
+# Use paperclip for image upload
+gem 'paperclip', '4.3.6'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
