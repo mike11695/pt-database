@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   validates_presence_of :username, :email
   validates_uniqueness_of :username, :email
+  
+  has_one :profile
          
   def email_required?
     false
