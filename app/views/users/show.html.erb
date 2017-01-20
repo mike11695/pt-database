@@ -7,6 +7,9 @@
         <hr class="style-one"/>
         <h1><%= @user.profile.title %></h1>
         <h5><%= @user.profile.description %></h5>
+        <% if current_user.id == @user.id %>
+        <%= link_to "Edit Profile", edit_user_profile_path(user_id: current_user.id) %>
+        <% end %>
       </div>
     </div>
   </div>

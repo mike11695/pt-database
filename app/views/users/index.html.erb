@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1 class="text-center">Pet Trading Database Users</h1>
+      <p class="text-center">Welcome to the PTD community.  Users must fill out a profile in order to be visable in the community.</p>
+      <ul class="list-unstyled">
+        <% @users.each do |user| %>
+          <% if user.profile %>
+            <li>
+              <div class="well row <%= cycle('white-bg', '') %>">
+                <div class="col-sm-2 text-center">
+                  <% if user.profile.avatar %>
+                    <%= link_to user do %>
+                      <%= image_tag user.profile.avatar.url, class: 'user-index-avatar' %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div>
+                  <div class="col-sm-2 text-center">
+                    <%= link_to user do %>
+                      <h2 class="inline"><%= user.username %></h2>
+                    <% end %>
+                  </div>
+                  <div class="col-sm-4 col-sm-offset-4 text-center">
+                    <h4 class="inline fix-margin">Pets UFT:</h4> 
+                    <h4 class="inline fix-margin">Pets UFA:</h4>
+                  </div>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
