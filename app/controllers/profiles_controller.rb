@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user! || :authenicate_admin!
   before_action :only_current_user
   
   # GET to /users/:user_id/profile/new
@@ -10,9 +10,9 @@ class ProfilesController < ApplicationController
   
   # POST to /users/:user_id/profile
   def create
-    # Ensure that we have the user who is filling out form
+    # Ensure that we have the user or admin who is filling out form
     @user = User.find( params[:user_id] )
-    # Create profile linked to this specific user
+    # Create profile linked to this specific user or admin
     @profile = @user.build_profile( profile_params )
     if @profile.save
       flash[:success] = "Profile updated!"
@@ -49,11 +49,7 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:avatar, :title, :description)
     end
     def only_current_user
-      if user_signed_in?
-        @user = User.find( params[:user_id] )
-      else
-        @admin = Admin.find( params[:admin_id] )
-      end
-        redirect_to(root_url) unless @user == current_user || @admin 
+      @user = User.find( params[:user_id] )
+      redirect_to(root_url) unless @user == current_user
     end
 end
