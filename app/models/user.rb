@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :username, :email
   
   has_one :profile
-  has_many :pets
+  has_many :pet
          
   def email_required?
     false

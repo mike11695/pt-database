@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :admins do
     resource :profile
   end
+  resources :users do
+    resource :pet
+  end
   get 'about', to: 'pages#about'
   resources :contacts, only: :create
   get 'contact-us', to: 'contacts#new', as: 'new_contact'
