@@ -1,9 +1,9 @@
-<%= form_for @pet, url: user_pet_path do |f| %>
+<%= form_for @pet, url: user_pet_path, html: {id: 'pet_form'} do |f| %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
-  <div class="form-group row col-sm-6">
+  <div class="form-group row col-sm-7">
     <% colors_array = [['8-Bit', 92], ['Agueena', 101], ['Alien', 1], ['Apple', 2], 
     ['Asparagus', 3], ['Aubergine', 4], ['Avocado', 5], ['Baby', 6], ['Biscuit', 7], 
     ['Blue', 8], ['Blueberry', 9], ['Brown', 10], ['Camouflage', 11], ['Carrot', 12], 
@@ -48,10 +48,43 @@
     <%= f.select :species, species_array, class: 'form-control' %>
   </div>
   <div class="form-group">
+    <%= f.label :level %>: Level and other stats are optional
+    <%= f.number_field :level, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :hp %>
+    <%= f.number_field :hp, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :strength %>
+    <%= f.number_field :strength, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :defence %>
+    <%= f.number_field :defence, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :movement %>
+    <%= f.number_field :movement, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :uc %>
+    <%= f.check_box :uc, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :rw %>
+    <%= f.check_box :rw, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :rn %>
+    <%= f.check_box :rn, class: 'form-control' %>
+  </div>
+  <div class="form-group">
     <%= f.label :description %>: Seeking anything specific?  Anything special about the pet?
     <%= f.text_area :description, class: 'form-control' %>
   </div>
+  <br/>
   <div class="form-group">
-    <%= f.submit "Update Pet", class: 'btn btn-primary' %>
+    <%= f.submit "Update Pet", class: 'btn btn-primary', id: 'form-signup-btn' %>
   </div>
 <% end %>
