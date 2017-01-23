@@ -24,7 +24,8 @@ class PetsController < ApplicationController
   #GET to /users/:user_id/pet/edit
   def edit
     @user = User.find( params[:user_id] )
-    @pet = @user.pet
+    @pet = Pet.find_by_id( params[:id] )
+    
   end
   
   #PUT to /users/:user_id/pet/
@@ -32,8 +33,8 @@ class PetsController < ApplicationController
     #Retrieve user from database
     @user = User.find( params[:user_id] )
     #Retrieve user's pet
-    @pet = @user.pet
-    #Mass assign edited profile attributes and save (update)
+    @pet = @user.pet.find_by( params[:id] )
+    #Mass assign edited pet attributes and save (update)
     if @pet.update_attributes(pet_params)
       flash[:success] = "Pet updated!"
       #Redirect user to profile page
@@ -43,12 +44,16 @@ class PetsController < ApplicationController
     end
   end
   
+  def verification
+    @pets = Pet.includes( pet_params )
+  end
+  
   private
     def pet_params
-      params.require(:pet).permit(:name, :color, :species, :level, :hp, :strength, :defence, :movement, :hsd, :uc, :rw, :rn, :verified, :description)
+      params.require(:pet).permit(:name, :color, :species, :level, :hp, :strength, :defence, :movement, :hsd, :uc, :rw, :rn, :verified, :description, :uft, :ufa)
     end
     def only_current_user
       @user = User.find( params[:user_id] )
-      redirect_to(root_url) unless @user == current_user
+      redirect_to(root_url) unless @user == current_user || admin_signed_in?
     end
 end

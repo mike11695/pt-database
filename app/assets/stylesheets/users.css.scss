@@ -22,8 +22,13 @@
   display: inline-block;
 }
 
-.float {
+.float-right {
   float: right;
+}
+
+.float-left {
+  float: left;
+  margin-left: 20px;
 }
 
 .fix-margin {

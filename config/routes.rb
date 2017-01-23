@@ -4,13 +4,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :users do
     resource :profile
+    resource :pet
   end
   resources :admins do
     resource :profile
   end
-  resources :users do
-    resource :pet
-  end
+  get 'pets', to: 'users#petindex'
+  get 'pets/:id' , to: 'users#petshow'
   get 'about', to: 'pages#about'
   resources :contacts, only: :create
   get 'contact-us', to: 'contacts#new', as: 'new_contact'

@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h4 class="text-center"><%= link_to user_path(@pet.user.id) do %><%= @pet.user.username %>'s<% end %> Pet</h4>
+      <div class="well text-center">
+        <div class="float-right">
+          <% if @pet.uft == true %>
+            <span class="label label-success">UFT</span>
+          <% end %>
+          <% if @pet.ufa == true %>
+            <span class="label label-success">UFA</span>
+          <% end %>
+          <% if @pet.uc == true %>
+            <span class="label label-success">UC</span>
+          <% end %>
+          <% if @pet.rw == true %>
+            <span class="label label-success">RW</span>
+          <% end %>
+          <% if @pet.rn == true %>
+            <span class="label label-success">RN</span>
+          <% end %>
+          <% if @pet.hsd >= 250 %>
+            <span class="label label-success">BD</span>
+          <% elsif @pet.hsd <= 249 && @pet.hsd >= 100 %>
+            <span class="label label-success">St. BD</span>
+          <% end %>
+        </div>
+        <br/>
+        <%= image_tag "http://pets.neopets.com/cpn/" + @pet.name + "/1/6.png", class: 'avatar-show-img' %>
+        <h1><%= @pet.name %></h1>
+        <h5><%= @pet.color %> <%= @pet.species %></h5>
+        <h5><%= @pet.description %></h5>
+        <hr class="style-one"/>
+        <p>Level: <%= @pet.level %></p>
+        <p>Hit Points: <%= @pet.hp %></p>
+        <p>Strength: <%= @pet.strength %></p>
+        <p>Defence: <%= @pet.defence %></p>
+        <p>Movement: <%= @pet.movement %></p>
+        <p>HSD: <%= @pet.hsd %></p>
+        <% if current_user.id == @pet.user.id || admin_signed_in? %>
+        <%= link_to "Edit Pet", edit_user_pet_path(user_id: current_user.id, id: @pet.id) %>
+        <% end %>
+      </div>
+      <%= link_to "Back", :back %>
+    </div>
+  </div>
+</div>

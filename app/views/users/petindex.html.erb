@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1 class="text-center">Pet Trading Database Pets</h1>
+      <p class="text-center">Only pets that have been verified will show here.</p>
+      <br/>
+      <ul class="list-unstyled">
+        <% @pets.each do |pet| %>
+          <li>
+            <div class="well row <%= cycle('white-bg', '') %>">
+              <div class="col-sm-12 text-center">
+                <%= link_to controller: "users", action: "petshow", id: pet.id do %>
+                  <%= image_tag "http://pets.neopets.com/cpn/" + pet.name + "/1/6.png", class: 'user-index-avatar' %>
+                <% end %>
+                <%= link_to controller: "users", action: "petshow", id: pet.id do %>
+                  <h2 class="inline float-left"><%= pet.name %></h2>
+                <% end %>
+                <div class="float-right">
+                  <% if pet.uft == true %>
+                    <span class="label label-success">UFT</span>
+                  <% end %>
+                  <% if pet.ufa == true %>
+                    <span class="label label-success">UFA</span>
+                  <% end %>
+                  <% if pet.uc == true %>
+                    <span class="label label-success">UC</span>
+                  <% end %>
+                  <% if pet.rw == true %>
+                    <span class="label label-success">RW</span>
+                  <% end %>
+                  <% if pet.rn == true %>
+                    <span class="label label-success">RN</span>
+                  <% end %>
+                  <% if pet.hsd >= 250 %>
+                    <span class="label label-success">BD</span>
+                  <% elsif pet.hsd <= 249 && pet.hsd >= 100 %>
+                    <span class="label label-success">St. BD</span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
