@@ -19,6 +19,7 @@ class PetsController < ApplicationController
       flash[:success] = "Pet submitted!  It won't appear for you or other users until it is verified."
       redirect_to user_path( params[:user_id] )
     else
+      flash[:error] = "Opps, something went wrong.  Possibly the pet is already in the database."
       render action: :new
     end
   end
@@ -38,12 +39,21 @@ class PetsController < ApplicationController
     #Mass assign edited pet attributes and save (update)
     if @pet.update_attributes(pet_params)
       flash[:success] = "Pet updated!"
-      #Redirect user to profile page
-      redirect_to user_path(id: params[:user_id] )
+      #Redirect user to pet profile page
+      redirect_to controller: "users", action: "petshow", id: @pet.id
     else 
       render action: :edit
       Rails.logger.info(@pet.errors.messages.inspect)
     end
+  end
+  
+  def destroy
+    Pet.find(params[:id]).destroy
+    flash[:success] = "Pet deleted."
+    redirect_to user_path( params[:user_id] )
+  end
+  
+  def show
   end
   
   private

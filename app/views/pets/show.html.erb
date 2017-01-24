@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h4 class="text-center"><%= @user.username %>'s Profile</h4>
+      <div class="well text-center">
+        <h1>Are you sure?</h1>
+        <%= link_to "Yes", controller: "pets", action: "destroy", user_id: @pet.user.id, id: @pet.id %>
+      </div>
+      <%= link_to "Back", :back %>
+    </div>
+  </div>
+</div>
