@@ -4,11 +4,24 @@
       <h4 class="text-center"><%= @user.username %>'s Profile</h4>
       <div class="well text-center">
         <%= image_tag @user.profile.avatar.url, class: 'avatar-show-img' %>
-        <hr class="style-one"/>
         <h1><%= @user.profile.title %></h1>
         <h5><%= @user.profile.description %></h5>
+        <hr class="style-one"/>
+        <% @pets.each do |pet| %>
+          <% if pet.user.id == @user.id %>
+            <% if pet.verified == true %>
+              <div class="inline-pets">
+                <%= link_to controller: "users", action: "petshow", id: pet.id do %>
+                  <%= image_tag "http://pets.neopets.com/cpn/" + pet.name + "/1/6.png", class: 'user-index-avatar' %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+        <% if user_signed_in? %>
         <% if current_user.id == @user.id %>
         <%= link_to "Edit Profile", edit_user_profile_path(user_id: current_user.id) %>
+        <% end %>
         <% end %>
       </div>
       <%= link_to "Back", :back %>

@@ -26,7 +26,7 @@
           <% end %>
         </div>
         <br/>
-        <%= image_tag "http://pets.neopets.com/cpn/" + @pet.name + "/1/6.png", class: 'avatar-show-img' %>
+        <%= image_tag "http://pets.neopets.com/cpn/" + @pet.name + "/1/5.png", class: 'pet-show-img' %>
         <h1><%= @pet.name %></h1>
         <h5><%= @pet.color %> <%= @pet.species %></h5>
         <h5><%= @pet.description %></h5>
@@ -37,8 +37,14 @@
         <p>Defence: <%= @pet.defence %></p>
         <p>Movement: <%= @pet.movement %></p>
         <p>HSD: <%= @pet.hsd %></p>
-        <% if current_user.id == @pet.user.id || admin_signed_in? %>
-        <%= link_to "Edit Pet", edit_user_pet_path(user_id: current_user.id, id: @pet.id) %>
+        <% if admin_signed_in? %>
+          <%= link_to "Edit Pet", controller: "pets", action: "edit", user_id: @pet.user.id, id: @pet.id %>
+        <% else %>
+          <% if user_signed_in? %>
+          <% if current_user.id == @pet.user.id %>
+            <%= link_to "Edit Pet", controller: "pets", action: "edit", user_id: @pet.user.id, id: @pet.id %>
+          <% end %>
+        <% end %>
         <% end %>
       </div>
       <%= link_to "Back", :back %>

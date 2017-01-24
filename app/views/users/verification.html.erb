@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <h1 class="text-center">Pet Trading Database Pets</h1>
-      <p class="text-center">Only pets that have been verified will show here.</p>
+      <p class="text-center">Pets awaiting verification</p>
       <br/>
       <ul class="list-unstyled">
         <% @pets.each do |pet| %>
-        <% if pet.verified == true %>
+        <% if pet.verified == false %>
           <li>
             <div class="well row <%= cycle('white-bg', '') %>">
               <div class="col-sm-12 text-center">

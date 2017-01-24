@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   get 'pets', to: 'users#petindex'
   get 'pets/:id' , to: 'users#petshow'
+  get 'verification', to: 'users#verification'
   get 'about', to: 'pages#about'
   resources :contacts, only: :create
   get 'contact-us', to: 'contacts#new', as: 'new_contact'

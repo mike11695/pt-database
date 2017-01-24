@@ -1,5 +1,5 @@
-class UsersController < ApplicationController
-  before_action :authenticate_admin!, only: [:verification]
+class AdminsController < ApplicationController
+  before_action :authenticate_admin!
   
   def index
     @users = User.includes(:profile)
@@ -13,16 +13,10 @@ class UsersController < ApplicationController
   # GET to /users/:id
   def show
     @user = User.find( params[:id] )
-    @pets = Pet.includes(:user)
   end
   
   def petshow
     @pet = Pet.find( params[:id] )
-  end
-  
-  def verification
-    @users = User.includes(:pet)
-    @pets = Pet.includes(:user)
   end
   
 end
