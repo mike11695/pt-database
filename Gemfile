@@ -48,6 +48,10 @@ gem 'paperclip', '4.3.6'
 # Jquery to handle pet form
 gem 'jquery-ui-rails'
 
+# Sunspot to help preform search functions
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'

@@ -53,9 +53,6 @@ class PetsController < ApplicationController
     redirect_to user_path( params[:user_id] )
   end
   
-  def show
-  end
-  
   private
     def pet_params
       params.require(:pet).permit(:name, :color, :species, :level, :hp, :strength, :defence, :movement, :hsd, :uc, :rw, :rn, :verified, :description, :uft, :ufa, :gender, :id)
