@@ -9,6 +9,10 @@ class User < ApplicationRecord
   
   has_one :profile
   has_many :pets
+  
+  def self.unamesearch(unamesearch)
+    where("username LIKE ?", "%#{unamesearch}%") 
+  end
          
   def email_required?
     false

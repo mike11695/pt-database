@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   before_action :authenticate_admin!, only: [:verification]
   
   def index
-    @users = User.includes(:profile)
+    if params[:unamesearch].present?
+      @users = User.unamesearch(params[:unamesearch]).order("created_at DESC")
+    else
+      @users = User.includes(:profile)
+    end
   end
   
   #This search function is super ugly, find a way to make it nicer

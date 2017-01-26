@@ -3,6 +3,13 @@
     <div class="col-md-8 col-md-offset-2">
       <h1 class="text-center">Pet Trading Database Users</h1>
       <p class="text-center">Welcome to the PTD community.  Users must fill out a profile in order to be visable in the community.</p>
+      <h3>Find a User</h3>
+      <%= form_tag users_path, :method => :get do |f| %>
+        <%= text_field_tag :unamesearch, params[:unamesearch], placeholder: "Search Username", class: 'form-control' %>
+        <br/>
+        <%= submit_tag "Search!", :name => nil %>
+      <% end %>
+      <br/>
       <ul class="list-unstyled">
         <% @users.each do |user| %>
           <% if user.profile %>
