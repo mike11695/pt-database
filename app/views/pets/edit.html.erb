@@ -75,6 +75,7 @@
                 <%= f.label :movement %>
                 <%= f.number_field :movement, class: 'form-control' %>
               </div>
+              <% if admin_signed_in? %>
               <div class="form-group">
                 <%= f.label :uc %>
                 <%= f.check_box :uc, class: 'form-control' %>
@@ -87,6 +88,7 @@
                 <%= f.label :rn %>
                 <%= f.check_box :rn, class: 'form-control' %>
               </div>
+              <% end %>
               <div class="form-group">
                 <%= f.label :uft %>
                 <%= f.check_box :uft, class: 'form-control' %>
