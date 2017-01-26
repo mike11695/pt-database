@@ -14,9 +14,16 @@
         <br/>
         <%= text_field_tag :speciessearch, params[:speciessearch], placeholder: "Search Species", class: 'form-control' %>
         <br/>
-        <p>UC: <%= check_box_tag :ucsearch, true, false, :class => "ucsearch" %> RW: <%= check_box_tag :rwsearch, true, false, :class => "rwsearch" %>
-           RN: <%= check_box_tag :rnsearch, true, false, :class => "rnsearch" %></p>
+        <p>UC: <%= check_box_tag :ucsearch, true, false, :class => "ucsearch" %></p>
         <p>UFT: <%= check_box_tag :uftsearch, true, false, :class => "uftsearch" %> UFA: <%= check_box_tag :ufasearch, true, false, :class => "ufasearch" %></p>
+        <%= submit_tag "Search!", :name => nil %>
+      <% end %>
+    </div>
+    <div class="well search-well">
+      <h3>Search by RW/RNs</h3>
+      <%= form_tag pets_path, :method => :get do |f| %>
+        <p>RW: <%= check_box_tag :rwsearch, true, false, :class => "rwsearch" %>
+           RN: <%= check_box_tag :rnsearch, true, false, :class => "rnsearch" %></p>
         <%= submit_tag "Search!", :name => nil %>
       <% end %>
     </div>
@@ -24,6 +31,7 @@
       <h3>Search by Name</h3>
       <%= form_tag pets_path, :method => :get do |f| %>
         <%= text_field_tag :namesearch, params[:namesearch], placeholder: "Search Name", class: 'form-control' %>
+        <br/>
         <%= submit_tag "Search!", :name => nil %>
       <% end %>
     </div>
