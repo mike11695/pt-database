@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   
   def index
     if params[:unamesearch].present?
-      @users = User.unamesearch(params[:unamesearch]).order("created_at DESC")
+      @users = User.unamesearch(params[:unamesearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
     else
-      @users = User.includes(:profile)
+      @users = User.includes(:profile).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
     end
   end
   
@@ -18,113 +18,95 @@ class UsersController < ApplicationController
       
     elsif params[:colorsearch].present? && params[:speciessearch].present?
       @pets = Pet.colorsearch(params[:colorsearch]).order("created_at DESC")
-      @pets = @pets.speciessearch(params[:speciessearch]).order("created_at DESC")
+      @pets = @pets.speciessearch(params[:speciessearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       if params[:ucsearch].present? && params[:uftsearch].present? && params[:ufasearch].present?
-        @pets = @pets.ucsearch(params[:colorsearch]).order("created_at DESC")
-        @ufts = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
-        @ufas = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
-        @pets = @ufts + @ufas
+        @pets = @pets.ucsearch(params[:colorsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       elsif params[:ucsearch].present? && params[:uftsearch].present?
         @pets = @pets.ucsearch(params[:colorsearch]).order("created_at DESC")
-        @pets = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
+        @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       elsif params[:ucsearch].present? && params[:ufasearch].present?
         @pets = @pets.ucsearch(params[:colorsearch]).order("created_at DESC")
-        @pets = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
+        @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       elsif params[:ucsearch].present?
-        @pets = @pets.ucsearch(params[:colorsearch]).order("created_at DESC")
+        @pets = @pets.ucsearch(params[:colorsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       elsif params[:uftsearch].present?
-        @pets = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
+        @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       elsif params[:ufasearch].present?
-        @pets = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
+        @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       end
       
     elsif params[:colorsearch].present? && params[:ucsearch].present?
       @pets = Pet.colorsearch(params[:colorsearch]).order("created_at DESC")
-      @pets = @pets.ucsearch(params[:ucsearch]).order("created_at DESC")
+      @pets = @pets.ucsearch(params[:ucsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       if params[:uftsearch].present? && params[:ufasearch].present?
-        @ufts = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
-        @ufas = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
-        @pets = @ufts + @ufas
+        @pets = (@pets).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       elsif params[:uftsearch].present?
-        @pets = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
+        @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       elsif params[:ufasearch].present?
-        @pets = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
+        @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       end
       
     elsif params[:colorsearch].present? && params[:uftsearch].present? && params[:ufasearch].present?
-      @pets = Pet.colorsearch(params[:colorsearch]).order("created_at DESC")
-      @ufts = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
-      @ufas = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
-      @pets = @ufts + @ufas
+      @pets = Pet.colorsearch(params[:colorsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:colorsearch].present? && params[:uftsearch].present?
       @pets = Pet.colorsearch(params[:colorsearch]).order("created_at DESC")
-      @pets = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
+      @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:colorsearch].present? && params[:ufasearch].present?
       @pets = Pet.colorsearch(params[:colorsearch]).order("created_at DESC")
-      @pets = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
+      @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:colorsearch].present?
-      @pets = Pet.colorsearch(params[:colorsearch]).order("created_at DESC")
+      @pets = Pet.colorsearch(params[:colorsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:speciessearch].present? && params[:ucsearch].present?
       @pets = Pet.speciessearch(params[:speciessearch]).order("created_at DESC")
-      @pets = @pets.ucsearch(params[:ucsearch]).order("created_at DESC")
+      @pets = @pets.ucsearch(params[:ucsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       if params[:uftsearch].present? && params[:ufasearch].present?
-        @ufts = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
-        @ufas = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
-        @pets = @ufts + @ufas
+        @pets = (@pets).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       elsif params[:uftsearch].present?
-        @pets = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
+        @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       elsif params[:ufasearch].present?
-        @pets = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
+        @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       end
       
     elsif params[:speciessearch].present? && params[:uftsearch].present? && params[:ufasearch].present?
-      @pets = Pet.speciessearch(params[:speciessearch]).order("created_at DESC")
-      @ufts = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
-      @ufas = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
-      @pets = @ufts + @ufas
+      @pets = Pet.speciessearch(params[:speciessearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:speciessearch].present? && params[:uftsearch].present?
       @pets = Pet.speciessearch(params[:speciessearch]).order("created_at DESC")
-      @pets = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
+      @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:speciessearch].present? && params[:ufasearch].present?
       @pets = Pet.speciessearch(params[:speciessearch]).order("created_at DESC")
-      @pets = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
+      @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:speciessearch].present?
-      @pets = Pet.speciessearch(params[:speciessearch]).order("created_at DESC")
+      @pets = Pet.speciessearch(params[:speciessearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:ucsearch].present? && params[:uftsearch].present? && params[:ufasearch].present?
-      @pets = Pet.ucsearch(params[:ucsearch]).order("created_at DESC") 
-      @ufts = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
-      @ufas = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
-      @pets = @ufts + @ufas
+      @pets = Pet.ucsearch(params[:ucsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:ucsearch].present? && params[:uftsearch].present?
       @pets = Pet.ucsearch(params[:ucsearch]).order("created_at DESC") 
-      @pets = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
+      @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:ucsearch].present? && params[:ufasearch].present?
       @pets = Pet.ucsearch(params[:ucsearch]).order("created_at DESC") 
-      @pets = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
+      @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:ucsearch].present?
-      @pets = Pet.ucsearch(params[:ucsearch]).order("created_at DESC")
+      @pets = Pet.ucsearch(params[:ucsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:uftsearch].present? && params[:ufasearch].present?
-      @ufts = Pet.uftsearch(params[:uftsearch]).order("created_at DESC")
-      @ufas = Pet.ufasearch(params[:ufasearch]).order("created_at DESC")
-      @pets = @ufts + @ufas
+      @pets = Pet.includes(:user).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:uftsearch].present?
-      @pets = Pet.uftsearch(params[:uftsearch]).order("created_at DESC")
+      @pets = Pet.uftsearch(params[:uftsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:ufasearch].present?
-      @pets = Pet.ufasearch(params[:ufasearch]).order("created_at DESC")
+      @pets = Pet.ufasearch(params[:ufasearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:rwsearch].present? && params[:rnsearch].present?
       @rws = Pet.rwsearch(params[:rwsearch]).order("created_at DESC")
@@ -132,13 +114,13 @@ class UsersController < ApplicationController
       @pets = @rws + @rns
       
     elsif params[:rwsearch].present?
-      @pets = Pet.rwsearch(params[:rwsearch]).order("created_at DESC")
+      @pets = Pet.rwsearch(params[:rwsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:rnsearch].present?
-      @pets = Pet.rnsearch(params[:rnsearch]).order("created_at DESC")
+      @pets = Pet.rnsearch(params[:rnsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     else
-      @pets = Pet.includes(:user).order("created_at DESC")
+      @pets = Pet.includes(:user).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
     end
   end
   

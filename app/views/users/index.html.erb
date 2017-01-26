@@ -3,11 +3,10 @@
     <div class="col-md-8 col-md-offset-2">
       <h1 class="text-center">Pet Trading Database Users</h1>
       <p class="text-center">Welcome to the PTD community.  Users must fill out a profile in order to be visable in the community.</p>
-      <h3>Find a User</h3>
+      <h3 class="text-center">Find a User</h3>
       <%= form_tag users_path, :method => :get do |f| %>
-        <%= text_field_tag :unamesearch, params[:unamesearch], placeholder: "Search Username", class: 'form-control' %>
-        <br/>
-        <%= submit_tag "Search!", :name => nil %>
+        <%= text_field_tag :unamesearch, params[:unamesearch], placeholder: "Search Username", class: 'users-inline' %>
+        <%= submit_tag "Search!", :name => nil, class: 'inline' %>
       <% end %>
       <br/>
       <ul class="list-unstyled">
@@ -38,6 +37,8 @@
           <% end %>
         <% end %>
       </ul>
+      <h4><%= will_paginate @users, class: 'text-center' %></h4>
+      </br>
     </div>
   </div>
 </div>

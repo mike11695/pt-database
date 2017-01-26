@@ -1,2 +1,5 @@
 - Refine pet searching - perhaps try combos in the users controller?
     My idea worked, but it looks really ugly.  I'll see if I find a better method.
+- Install paginate and apply t to indexes
+- Create the message system
+- Implement a profanity filter
