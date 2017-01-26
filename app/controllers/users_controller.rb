@@ -15,7 +15,12 @@ class UsersController < ApplicationController
     elsif params[:colorsearch].present? && params[:speciessearch].present?
       @pets = Pet.colorsearch(params[:colorsearch]).order("created_at DESC")
       @pets = @pets.speciessearch(params[:speciessearch]).order("created_at DESC")
-      if params[:ucsearch].present? && params[:uftsearch].present?
+      if params[:ucsearch].present? && params[:uftsearch].present? && params[:ufasearch].present?
+        @pets = @pets.ucsearch(params[:colorsearch]).order("created_at DESC")
+        @ufts = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
+        @ufas = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
+        @pets = @ufts + @ufas
+      elsif params[:ucsearch].present? && params[:uftsearch].present?
         @pets = @pets.ucsearch(params[:colorsearch]).order("created_at DESC")
         @pets = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
       elsif params[:ucsearch].present? && params[:ufasearch].present?
@@ -32,11 +37,21 @@ class UsersController < ApplicationController
     elsif params[:colorsearch].present? && params[:ucsearch].present?
       @pets = Pet.colorsearch(params[:colorsearch]).order("created_at DESC")
       @pets = @pets.ucsearch(params[:ucsearch]).order("created_at DESC")
-      if params[:uftsearch].present?
+      if params[:uftsearch].present? && params[:ufasearch].present?
+        @ufts = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
+        @ufas = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
+        @pets = @ufts + @ufas
+      elsif params[:uftsearch].present?
         @pets = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
       elsif params[:ufasearch].present?
         @pets = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
       end
+      
+    elsif params[:colorsearch].present? && params[:uftsearch].present? && params[:ufasearch].present?
+      @pets = Pet.colorsearch(params[:colorsearch]).order("created_at DESC")
+      @ufts = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
+      @ufas = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
+      @pets = @ufts + @ufas
       
     elsif params[:colorsearch].present? && params[:uftsearch].present?
       @pets = Pet.colorsearch(params[:colorsearch]).order("created_at DESC")
@@ -52,11 +67,21 @@ class UsersController < ApplicationController
     elsif params[:speciessearch].present? && params[:ucsearch].present?
       @pets = Pet.speciessearch(params[:speciessearch]).order("created_at DESC")
       @pets = @pets.ucsearch(params[:ucsearch]).order("created_at DESC")
-      if params[:uftsearch].present?
+      if params[:uftsearch].present? && params[:ufasearch].present?
+        @ufts = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
+        @ufas = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
+        @pets = @ufts + @ufas
+      elsif params[:uftsearch].present?
         @pets = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
       elsif params[:ufasearch].present?
         @pets = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
       end
+      
+    elsif params[:speciessearch].present? && params[:uftsearch].present? && params[:ufasearch].present?
+      @pets = Pet.speciessearch(params[:speciessearch]).order("created_at DESC")
+      @ufts = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
+      @ufas = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
+      @pets = @ufts + @ufas
       
     elsif params[:speciessearch].present? && params[:uftsearch].present?
       @pets = Pet.speciessearch(params[:speciessearch]).order("created_at DESC")
@@ -69,6 +94,12 @@ class UsersController < ApplicationController
     elsif params[:speciessearch].present?
       @pets = Pet.speciessearch(params[:speciessearch]).order("created_at DESC")
       
+    elsif params[:ucsearch].present? && params[:uftsearch].present? && params[:ufasearch].present?
+      @pets = Pet.ucsearch(params[:ucsearch]).order("created_at DESC") 
+      @ufts = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
+      @ufas = @pets.ufasearch(params[:ufasearch]).order("created_at DESC")
+      @pets = @ufts + @ufas
+      
     elsif params[:ucsearch].present? && params[:uftsearch].present?
       @pets = Pet.ucsearch(params[:ucsearch]).order("created_at DESC") 
       @pets = @pets.uftsearch(params[:uftsearch]).order("created_at DESC")
@@ -80,14 +111,21 @@ class UsersController < ApplicationController
     elsif params[:ucsearch].present?
       @pets = Pet.ucsearch(params[:ucsearch]).order("created_at DESC")
       
-    elsif params[:uftsearch].present?
-      @pets = Pet.uftsearch(params[:uftsearch]).order("created_at DESC")
+    elsif params[:uftsearch].present? && params[:ufasearch].present?
+      @ufts = Pet.uftsearch(params[:uftsearch]).order("created_at DESC")
+      @ufas = Pet.ufasearch(params[:ufasearch]).order("created_at DESC")
+      @pets = @ufts + @ufas
       
     elsif params[:uftsearch].present?
       @pets = Pet.uftsearch(params[:uftsearch]).order("created_at DESC")
       
     elsif params[:ufasearch].present?
       @pets = Pet.ufasearch(params[:ufasearch]).order("created_at DESC")
+      
+    elsif params[:rwsearch].present? && params[:rnsearch].present?
+      @rws = Pet.rwsearch(params[:rwsearch]).order("created_at DESC")
+      @rns = Pet.rnsearch(params[:rnsearch]).order("created_at DESC")
+      @pets = @rws + @rns
       
     elsif params[:rwsearch].present?
       @pets = Pet.rwsearch(params[:rwsearch]).order("created_at DESC")
