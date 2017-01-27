@@ -1,45 +1,60 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <h1 class="text-center">Conversation</h1>
-      </br>
-      <div class="well hide-overflow">
-      <% if @over_ten %>
-        <%= link_to "Show Previous", '?m=all' %>
-      <% end %>
-      <div class="ui segment">
-       <% @messages.each do |message| %>
-        <% if message.body %>
-         <% user = User.find(message.user_id) %>
-         <div class="item">
-          <div class="content">
-           <div class="header"><strong><h6><%= user.username %></strong>     <%= message.message_time %></h6></div>
-            <div class="list">
-             <div class="item">
-              <i class="right triangle icon"></i>
-               <%= message.body %>
-               <hr class="style-one"/>
-            </div>
-          </div>
-         </div>
-       </div>
-       <% end %>
-      <% end %>
-      </div>
-      <br/>
-      <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
-       <div class="field">
-         <%= f.text_area :body, class: 'form-control' %>
-       </div>
-       <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
-       <div>
-         <br/>
-         <%= f.submit "Add Reply", class: 'ui blue labeled submit icon button' %>
-       </div>
-       <br/>
-       <p class="text-center"><%= link_to "Delete this conversation", {controller: :conversations, action: :destroy, id: @conversation.id, user_id: current_user.id }, data: {:confirm => 'Are you sure?'}, :method => :delete %></p>
-      <% end %>
+<% if user_signed_in? || admin_signed_in? %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <% if current_user.id == @conversation.recipient_id || current_user.id == @conversation.sender_id || admin_signed_in? %>
+        <h1 class="text-center">Conversation</h1>
+        </br>
+        <div class="well hide-overflow">
+        <% if @over_ten %>
+          <%= link_to "Show Previous", '?m=all' %>
+        <% end %>
+        <div class="ui segment">
+         <% @messages.each do |message| %>
+          <% if message.body %>
+            <% user = User.find(message.user_id) %>
+              <div class="item">
+               <div class="content">
+                <div class="header"><strong><h6><%= user.username %></strong>     <%= message.message_time %></h6></div>
+                 <div class="list">
+                  <div class="item">
+                  <i class="right triangle icon"></i>
+                  <%= message.body %>
+                  <hr class="style-one"/>
+                </div>
+               </div>
+              </div>
+             </div>
+         <% end %>
+        <% end %>
+        </div>
+        <br/>
+        <% if user_signed_in? %>
+          <% recipient = User.find(@conversation.recipient_id) %>
+          <% sender = User.find(@conversation.sender_id) %>
+          <% if current_user.id == recipient.id || current_user.id == sender.id %>
+          <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
+           <div class="field">
+             <%= f.text_area :body, class: 'form-control' %>
+           </div>
+           <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+           <div>
+             <br/>
+             <%= f.submit "Add Reply", class: 'ui blue labeled submit icon button' %>
+           </div>
+           <br/>
+           <p class="text-center"><%= link_to "Delete this conversation", {controller: :conversations, action: :destroy, id: @conversation.id, user_id: current_user.id }, data: {:confirm => 'Are you sure?'}, :method => :delete %></p>
+          <% end %>
+          <% end %>
+        <% elsif admin_signed_in? %>
+          <p class="text-center"><%= link_to "Delete this conversation", {controller: :conversations, action: :destroy, id: @conversation.id, user_id: current_user.id }, data: {:confirm => 'Are you sure?'}, :method => :delete %></p>
+        <% end %>
+        <% else %>
+          <h1 class="text-center">Opps!</h1>
+          <p class="text-center">This conversation is not for you. ;)</p>
+        <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
