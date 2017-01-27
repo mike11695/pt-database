@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1 class="text-center">Mailbox</h1>
+      <p class="text-center">If another user messages you, you'll find it in the list below.</p>
+      <br/>
+      <div class="well">
+      <ul class="list-unstyled">
+        <% @conversations.each do |conversation| %>
+          <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+            <% if conversation.sender_id == current_user.id %>
+              <% recipient = User.find(conversation.recipient_id) %>
+            <% else %>
+              <% recipient = User.find(conversation.sender_id) %>
+            <% end %>
+            <p class="text-center">Conversation with <%= link_to recipient.username, conversation_messages_path(conversation) %></p>
+          <% end %>
+        <% end %>
+      </ul>
+      </div>
+    </div>
+  </div>
+</div>

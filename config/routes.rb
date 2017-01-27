@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :admins do
     resource :profile
   end
+  resources :conversations do
+    resources :messages
+  end
   get 'pets', to: 'users#petindex'
   get 'pets/:id' , to: 'users#petshow'
   get 'verification', to: 'users#verification'

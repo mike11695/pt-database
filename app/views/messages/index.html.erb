@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <h1 class="text-center">Conversation</h1>
+      </br>
+      <div class="well">
+      <% if @over_ten %>
+        <%= link_to "Show Previous", '?m=all' %>
+      <% end %>
+      <div class="ui segment">
+       <% @messages.each do |message| %>
+        <% if message.body %>
+         <% user = User.find(message.user_id) %>
+         <div class="item">
+          <div class="content">
+           <div class="header"><strong><h6><%= user.username %></strong>     <%= message.message_time %></h6></div>
+            <div class="list">
+             <div class="item">
+              <i class="right triangle icon"></i>
+               <%= message.body %>
+            </div>
+          </div>
+         </div>
+       </div>
+       <% end %>
+      <% end %>
+      </div>
+      <br/>
+      <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
+       <div class="field">
+         <%= f.text_area :body, class: 'form-control' %>
+       </div>
+       <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+       <div>
+         <br/>
+         <%= f.submit "Add Reply", class: 'ui blue labeled submit icon button' %>
+       </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

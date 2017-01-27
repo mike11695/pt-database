@@ -19,10 +19,13 @@
           <% end %>
         <% end %>
         <br/>
-        <% if user_signed_in? %>
-        <% if current_user.id == @user.id %>
-        <%= link_to "Edit Profile", edit_user_profile_path(user_id: current_user.id) %>
-        <% end %>
+        <% if user_signed_in? || admin_signed_in? %>
+          <% if current_user.id != @user.id %>
+            <%= link_to "Message me!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: "post" %>
+          <% end %>
+          <% if current_user.id == @user.id || admin_signed_in? %>
+            <%= link_to "Edit Profile", edit_user_profile_path(user_id: current_user.id) %>
+          <% end %>
         <% end %>
       </div>
       <%= link_to "Back", :back %>
