@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
-        <% if current_user.id == @conversation.recipient_id || current_user.id == @conversation.sender_id || admin_signed_in? %>
+        <% if admin_signed_in? || current_user.id == @conversation.recipient_id || current_user.id == @conversation.sender_id %>
         <h1 class="text-center">Conversation</h1>
         </br>
         <div class="well hide-overflow">
@@ -47,7 +47,7 @@
           <% end %>
           <% end %>
         <% elsif admin_signed_in? %>
-          <p class="text-center"><%= link_to "Delete this conversation", {controller: :conversations, action: :destroy, id: @conversation.id, user_id: current_user.id }, data: {:confirm => 'Are you sure?'}, :method => :delete %></p>
+          <p class="text-center"><%= link_to "Delete this conversation", {controller: :conversations, action: :destroy, id: @conversation.id, user_id: @conversation.recipient.id }, data: {:confirm => 'Are you sure?'}, :method => :delete %></p>
         <% end %>
         <% else %>
           <h1 class="text-center">Opps!</h1>

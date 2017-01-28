@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
     
     if @messages.last
       
-      if @messages.last.user_id != current_user.id
+      if admin_signed_in? || @messages.last.user_id != current_user.id
         @messages.last.read = true;
       end
       
