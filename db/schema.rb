@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126223134) do
+ActiveRecord::Schema.define(version: 20170128163728) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -92,6 +92,26 @@ ActiveRecord::Schema.define(version: 20170126223134) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "admin_id"
+  end
+
+  create_table "report_forms", force: :cascade do |t|
+    t.string   "name"
+    t.string   "issue"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_report_forms_on_user_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string   "name"
+    t.string   "issue"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

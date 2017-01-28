@@ -27,24 +27,18 @@
         
         <% end %>
       </div>
+      <% if user_signed_in? %>
       <div class="row row-line-break">
         <hr class="line-break"/>
       </div>
       
-      <h1 class="text-center">Contact A Mod</h1>
-      <p class="text-center">Please contact a moderator directly if you see a pet that shouldn't 
+      <h1 class="text-center">Send in a Report</h1>
+      <p class="text-center">Please send in a report if you see a pet that shouldn't 
       be listed (yours or someone else), something innapropriate, 
       or if you have any issues submitting a pet.</p>
       <br/>
-      <div class="well">
-        None :(
-      </div>
-      <div class="well">
-        None :(
-      </div>
-      <div class="well">
-        None :(
-      </div>
+      <%= link_to "Report Form", new_report_path %>
+      <% end %>
       <br/>
     </div>
   </div>

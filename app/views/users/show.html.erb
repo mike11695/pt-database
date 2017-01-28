@@ -20,11 +20,15 @@
         <% end %>
         <br/>
         <% if user_signed_in? || admin_signed_in? %>
-          <% if current_user.id != @user.id %>
-            <%= link_to "Message me!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: "post" %>
+          <% if admin_signed_in? %>
+            <p><%= link_to "Message me!", conversations_path(sender_id: current_admin.id, recipient_id: @user.id), method: "post" %></p>
+          <% elsif current_user.id != @user.id %>
+            <p><%= link_to "Message me!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: "post" %></p>
           <% end %>
-          <% if current_user.id == @user.id || admin_signed_in? %>
-            <%= link_to "Edit Profile", edit_user_profile_path(user_id: current_user.id) %>
+          <% if admin_signed_in? %>
+            <p><%= link_to "Edit Profile", edit_user_profile_path(user_id: @user.id) %></p>
+          <% elsif current_user.id == @user.id %>
+            <p><%= link_to "Edit Profile", edit_user_profile_path(user_id: current_user.id) %></p>
           <% end %>
         <% end %>
       </div>

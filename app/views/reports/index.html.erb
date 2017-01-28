@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1 class="text-center">User Reports</h1>
+      <% @reports.each do |report| %>
+        <div class="well">
+          <div class="row col-md-6">
+            <p><b>Report ID#:</b> <%= report.id %> | <b>Username:</b> <%= report.name %>
+              <%= link_to " »Delete", {controller: :reports, action: :destroy, id: report.id }, data: {:confirm => 'Are you sure?'}, :method => :delete %></p>
+          </div>
+          <hr class="style-four"/>
+            <p><b>Issue:</b></p>
+            <p><%= report.body %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
