@@ -55,6 +55,9 @@ gem 'sunspot_solr'
 # Use paginate to create pages for index
 gem 'will_paginate', '3.1.0'
 
+# Use Obscenity to filter profanity
+gem 'obscenity'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'

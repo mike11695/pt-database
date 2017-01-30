@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   validates_presence_of :username, :email
   validates_uniqueness_of :username, :email
-  validates :username, length: { maximum: 20 , too_long: "%{count} is too long, maximum is 20 characters" }
+  validates :username, length: { maximum: 20 , too_long: "%{count} is too long, maximum is 20 characters" }, obscenity: true
   
   has_one :profile
   has_many :pets
