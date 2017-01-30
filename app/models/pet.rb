@@ -4,7 +4,7 @@ class Pet < ActiveRecord::Base
   validates :description, length: { maximum: 500,
     too_long: "%{count} characters is the maximum allowed for descriptions." }, 
     obscenity: true
-  validates :name, { maximum: 20,
+  validates :name, length: { maximum: 20,
     too_long: "%{count} characters is the maximum allowed for names." }, 
     obscenity: true
   
