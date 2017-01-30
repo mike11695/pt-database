@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_admin!, only: [:verification]
+  before_action :authenticate_admin!, only: [:verification, :edit, :update]
   
   def index
     if params[:unamesearch].present?
@@ -139,5 +139,28 @@ class UsersController < ApplicationController
     @users = User.includes(:pet)
     @pets = Pet.includes(:user)
   end
+  
+  def edit
+    @user = User.find( params[:id] )
+  end
+  
+  #PUT to /users/
+  def update
+    #Retrieve user from database
+    @user = User.find_by( params[:id] )
+    #Mass assign edited profile attributes and save (update)
+    if @user.update_attributes(user_params)
+      flash[:success] = "User updated!"
+      #Redirect user to profile page
+      redirect_to user_path(id: params[:id] )
+    else 
+      render action: :edit
+    end
+  end
+  
+  private
+    def user_params
+      params.require(:user).permit(:username, :banned)
+    end
   
 end

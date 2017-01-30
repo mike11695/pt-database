@@ -11,7 +11,7 @@
       <br/>
       <ul class="list-unstyled">
         <% @users.each do |user| %>
-          <% if user.profile %>
+          <% if user.profile && user.banned == false %>
             <li>
               <div class="well row <%= cycle('white-bg', '') %>">
                 <div class="col-sm-2 text-center">
