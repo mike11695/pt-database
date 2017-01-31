@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+    <% if @user.profile %>
     <h1 class="text-center">Submit a Pet</h1>
     <p class="text-center"><b>ATTENTION:</b> Your pet must clearly be labeled 
     UFT/UFA on their lookup or petpage or they will not be accepted onto the site.</p>
@@ -7,5 +8,9 @@
     <div class="well">
       <%= render 'form' %>
     </div>
+    <% else %>
+    <h1 class="text-center">Opps!</h1>
+    <p class="text-center">You need to make a profile before you can submit a pet.</p>
+    <% end %>
   </div>
 </div>

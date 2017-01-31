@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  default_url_options :host => "https://pet-trade2-mike11695.c9users.io/"
   root to: 'pages#home'
   devise_for :admins, controllers: { registrations: 'users/registrations' }
   devise_for :users, controllers: { registrations: 'users/registrations' }

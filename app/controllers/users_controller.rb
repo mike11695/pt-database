@@ -7,6 +7,8 @@ class UsersController < ApplicationController
     else
       @users = User.includes(:profile).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
     end
+    user = User.find(params[:id])
+    @pets = user.pets
   end
   
   #This search function is super ugly, find a way to make it nicer
@@ -14,7 +16,7 @@ class UsersController < ApplicationController
     @users = User.includes(:pet)
     
     if params[:namesearch].present?
-      @pets = Pet.namesearch(params[:namesearch]).order("created_at DESC")
+      @pets = Pet.namesearch(params[:namesearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
     elsif params[:colorsearch].present? && params[:speciessearch].present?
       @pets = Pet.colorsearch(params[:colorsearch]).order("created_at DESC")
@@ -156,6 +158,12 @@ class UsersController < ApplicationController
     else 
       render action: :edit
     end
+  end
+  
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted."
+    redirect_to users_path
   end
   
   private

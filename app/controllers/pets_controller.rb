@@ -6,6 +6,7 @@ class PetsController < ApplicationController
   
   # GET to /users/:user_id/pet/new
   def new
+    @user = User.find( params[:user_id] )
     @pet = Pet.new
   end
   
