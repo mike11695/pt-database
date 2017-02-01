@@ -7,8 +7,6 @@ class UsersController < ApplicationController
     else
       @users = User.includes(:profile).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
     end
-    user = User.find(params[:id])
-    @pets = user.pets
   end
   
   #This search function is super ugly, find a way to make it nicer
@@ -155,7 +153,8 @@ class UsersController < ApplicationController
       flash[:success] = "User updated!"
       #Redirect user to profile page
       redirect_to user_path(id: params[:id] )
-    else 
+    else
+      flash[:danger] = @user.errors.full_messages.join(", ")
       render action: :edit
     end
   end

@@ -1,6 +1,6 @@
 class PetsController < ApplicationController
   before_action :authenticate_user!
-  skip_before_action :authenticate_user!, only: [:edit, :update]
+  skip_before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :only_current_user
   skip_before_action :only_current_user, only: [:update]
   
@@ -20,7 +20,7 @@ class PetsController < ApplicationController
       flash[:success] = "Pet submitted!  It won't appear for you or other users until it is verified."
       redirect_to user_path( params[:user_id] )
     else
-      flash[:error] = "Opps, something went wrong.  Possibly the pet is already in the database."
+      flash[:danger] = @pet.errors.full_messages.join(", ")
       render action: :new
     end
   end

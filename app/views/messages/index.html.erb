@@ -40,7 +40,7 @@
            <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
            <div>
              <br/>
-             <%= f.submit "Add Reply", class: 'ui blue labeled submit icon button' %>
+             <%= f.submit "Add Reply", class: 'btn btn-primary' %>
            </div>
            <br/>
            <p class="text-center"><%= link_to "Delete this conversation", {controller: :conversations, action: :destroy, id: @conversation.id, user_id: current_user.id }, data: {:confirm => 'Are you sure?'}, :method => :delete %></p>

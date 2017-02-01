@@ -1,10 +1,9 @@
 class Pet < ActiveRecord::Base
   validates_presence_of :name, :species, :color
-  validates_uniqueness_of :name
   validates :description, length: { maximum: 500,
     too_long: "%{count} characters is the maximum allowed for descriptions." }, 
     obscenity: true
-  validates :name, length: { maximum: 20,
+  validates :name, uniqueness: {message: "Opps, this pet is already in the database!"}, length: { maximum: 20,
     too_long: "%{count} characters is the maximum allowed for names." }, 
     obscenity: true
   

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <h1 class="text-center">Pet Trading Database Users</h1>
-      <p class="text-center">Welcome to the PTD community.  Users must fill out a profile in order to be visable in the community.</p>
+      <p class="text-center">Welcome to the PTD community.  Users must fill out a profile in order to be visible in the community.</p>
       <h3 class="text-center">Find a User</h3>
       <%= form_tag users_path, :method => :get do |f| %>
         <%= text_field_tag :unamesearch, params[:unamesearch], placeholder: "Search Username", class: 'users-inline' %>
@@ -22,14 +22,13 @@
                   <% end %>
                 </div>
                 <div>
-                  <div class="col-sm-6">
+                  <div class="col-sm-8">
                     <%= link_to user do %>
                       <h2 class="inline"><%= user.username %></h2>
                     <% end %>
                   </div>
                   <div class="text-center">
-                    <h4 class="inline fix-margin">Pets UFT:</h4> 
-                    <h4 class="inline fix-margin">Pets UFA:</h4>
+                    <h4 class="inline fix-margin">Pets: <%= user.pets.count %></h4>
                   </div>
                 </div>
               </div>

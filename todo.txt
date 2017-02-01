@@ -2,4 +2,11 @@
     My idea worked, but it looks really ugly.  I'll see if I find a better method.
 - Install paginate and apply to indexes - Done
 - Create the message system - Done, maybe add profile images though?
-- Implement a profanity filter
+- Implement a profanity filter - Done
+
+Things to fix:
+error messages not showing, freezing
+sanitize text fields
+add un field for profiles
+Make a list of allowed sites
+Browser Account Saving

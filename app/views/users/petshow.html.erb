@@ -45,7 +45,7 @@
             <% if admin_signed_in? %>
               <%= link_to "Edit Pet", controller: "pets", action: "edit", user_id: @pet.user.id, id: @pet.id %>
               <br/>
-              <%= link_to "Delete Pet", controller: "pets", action: "destroy", user_id: @pet.user.id, id: @pet.id, data: { confirm: "You sure?" } %>
+              <%= link_to "Delete Pet", {controller: :pets, action: :destroy, user_id: @pet.user.id, id: @pet.id }, data: {:confirm => 'Are you sure?'}, :method => :delete %>
             <% else %>
               <% if user_signed_in? %>
               <% if current_user.id == @pet.user.id %>

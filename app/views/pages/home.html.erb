@@ -10,9 +10,45 @@
     <div class="well search-well">
       <h3>Search by Color and/or Species</h3>
       <%= form_tag pets_path, :method => :get do |f| %>
-        <%= text_field_tag :colorsearch, params[:colorsearch], placeholder: "Search Color", class: 'form-control' %>
+        <% colors_array = [[''], ['8-Bit'], ['Agueena'], ['Alien'], ['Apple'], 
+        ['Asparagus'], ['Aubergine'], ['Avocado'], ['Baby'], ['Biscuit'], 
+        ['Blue'], ['Blueberry'], ['Brown'], ['Camouflage'], ['Carrot'], 
+        ['Checkered'], ['Chocolate'], ['Chokato'], ['Christmas'], 
+        ['Clay'], ['Cloud'], ['Coconut'], ['Custard'], ['Darigan'], 
+        ['Desert'], ['Dimensional'], ['Disco'], ['Durian'], 
+        ['Elderlyboy'], ['Elderlygirl'], ['Electric'], ['Eventide'], 
+        ['Faerie'], ['Fire'], ['Garlic'], ['Ghost'], ['Glowing'], 
+        ['Gold'], ['Gooseberry'], ['Grape'], ['Green'], ['Grey'], 
+        ['Halloween'], ['Ice'], ['Invisible'], ['Island'], ['Jelly'], 
+        ['Lemon'], ['Lime'], ['Magma'], ['Mallow'], ['Maractite'], 
+        ['Maraquan'], ['Msp'], ['Mutant'], ['Onion'], ['Orange'], 
+        ['Pastel'], ['Pea'], ['Peach'], ['Pear'], ['Pepper'], 
+        ['Pineapple'], ['Pink'], ['Pirate'], ['Plum'], ['Plushie'], 
+        ['PolkaDot'], ['Purple'], ['Quigukiboy'], ['Quigukigirl'], 
+        ['Rainbow'], ['Red'], ['Relic'], ['Robot'], ['Royalboy'], 
+        ['Royalgirl'], ['Shadow'], ['Silver'], ['Sketch'], ['Skunk'], 
+        ['Snot'], ['Snow'], ['Speckled'], ['Split'], ['Sponge'], 
+        ['Spotted'], ['Starry'], ['Stealthy'], ['Strawberry'], 
+        ['Striped'], ['SwampGas'], ['Thornberry'], ['Tomato'], 
+        ['Transparent'], ['Tyrannian'], ['Ummagine'], ['UsukiBoy'], 
+        ['UsukiGirl'], ['Water'], ['White'], ['Woodland'], ['Wraith'], 
+        ['Yellow'], ['Zombie']] %>
+        <%= select_tag(:colorsearch, options_for_select(colors_array), class: 'form-control') %>
         <br/>
-        <%= text_field_tag :speciessearch, params[:speciessearch], placeholder: "Search Species", class: 'form-control' %>
+        <% species_array = [[''], ['Acara'], ['Aisha'], ['Blumaroo'], 
+        ['Bori'], ['Bruce'], ['Buzz'], ['Chia'], ['Chomby'], 
+        ['Cybunny'], ['Draik'], ['Elephante'], ['Eyrie'], 
+        ['Flotsam'], ['Gelert'], ['Gnorbu'], ['Grarrl'], 
+        ['Grundo'], ['Hissi'], ['Ixi'], ['Jetsam'], ['Jubjub'], 
+        ['Kacheek'], ['Kau'], ['Kiko'], ['Koi'], ['Korbat'], 
+        ['Kougra'], ['Krawk'], ['Kyrii'], ['Lenny'], ['Lupe'], 
+        ['Lutari'], ['Meerca'], ['Moehog'], ['Mynci'], 
+        ['Nimmo'], ['Ogrin'], ['Peophin'], ['Poogle'], 
+        ['Pteri'], ['Quiggle'], ['Ruki'], ['Scorchio'], 
+        ['Shoyru'], ['Skeith'], ['Techo'], ['Tonu'], 
+        ['Tuskaninny'], ['Uni'], ['Usul'], ['Vandagyre'], 
+        ['Wocky'], ['Xweetok'], ['Yurble'], ['Zafara']]%>
+        <%= select_tag(:speciessearch, options_for_select(species_array), class: 'form-control') %>
         <br/>
         <p>UC: <%= check_box_tag :ucsearch, true, false, :class => "ucsearch" %></p>
         <p>UFT: <%= check_box_tag :uftsearch, true, false, :class => "uftsearch" %> UFA: <%= check_box_tag :ufasearch, true, false, :class => "ufasearch" %></p>
