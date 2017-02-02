@@ -10,7 +10,7 @@
           </div>
           <hr class="style-four"/>
             <p><b>Issue:</b></p>
-            <p><%= report.body %></p>
+            <p><%= sanitize report.body, tags: %w(), attributes: %w() %></p>
         </div>
       <% end %>
     </div>

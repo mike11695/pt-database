@@ -19,7 +19,7 @@
                  <div class="list">
                   <div class="item">
                   <i class="right triangle icon"></i>
-                  <%= message.body %>
+                  <%= sanitize message.body, tags: %w(), attributes: %w() %>
                   <hr class="style-one"/>
                 </div>
                </div>

@@ -34,7 +34,7 @@
             <%= image_tag "http://pets.neopets.com/cpn/" + @pet.name + "/1/5.png", class: 'pet-show-img' %>
             <h1><%= @pet.name %></h1>
             <h5><%= @pet.color %> <%= @pet.species %></h5>
-            <h5><%= @pet.description %></h5>
+            <h5><%= sanitize @pet.description, tags: %w(), attributes: %w() %></h5>
             <hr class="style-one"/>
             <p>Level: <%= @pet.level %></p>
             <p>Hit Points: <%= @pet.hp %></p>

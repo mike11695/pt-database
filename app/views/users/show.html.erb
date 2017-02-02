@@ -8,8 +8,8 @@
       <h4 class="text-center"><%= @user.username %>'s Profile</h4>
       <div class="well text-center">
         <%= image_tag @user.profile.avatar.url, class: 'avatar-show-img' %>
-        <h1><%= @user.profile.title %></h1>
-        <h5><%= @user.profile.description %></h5>
+        <h1><%= sanitize @user.profile.title, tags: %w(), attributes: %w() %></h1>
+        <h5><%= sanitize @user.profile.description, tags: %w(), attributes: %w() %></h5>
         <hr class="style-one"/>
         <% @pets.each do |pet| %>
           <% if pet.user.id == @user.id %>

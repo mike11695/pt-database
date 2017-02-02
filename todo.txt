@@ -5,7 +5,7 @@
 - Implement a profanity filter - Done
 
 Things to fix:
-error messages not showing, freezing
+error messages not showing, freezing [Fixed]
 sanitize text fields
 add un field for profiles
 Make a list of allowed sites
