@@ -147,7 +147,7 @@ class UsersController < ApplicationController
   #PUT to /users/
   def update
     #Retrieve user from database
-    @user = User.find_by( params[:id] )
+    @user = User.find_by_id( params[:id] )
     #Mass assign edited profile attributes and save (update)
     if @user.update_attributes(user_params)
       flash[:success] = "User updated!"

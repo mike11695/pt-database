@@ -16,7 +16,6 @@ class ContactsController < ApplicationController
       name = params[:contact][:name]
       email = params[:contact][:email]
       body = params[:contact][:comments]
-      # Plug variables into Contact mailer
       # email method and send email
       ContactMailer.contact_email(name, email, body).deliver
       # Store success message into flash hash

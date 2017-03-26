@@ -7,7 +7,7 @@ class Profile < ActiveRecord::Base
   validates :description, length: { maximum: 500,
     too_long: "%{count} characters is the maximum allowed for descriptions." }, 
     obscenity: true
-  validates :title, length: { maximum: 50,
-    too_long: "%{count} characters is the maximum allowed for titles." }, 
+  validates :neoname, length: { maximum: 20,
+    too_long: "%{count} characters is the maximum allowed for Neopets Usernames." }, 
     obscenity: true
 end

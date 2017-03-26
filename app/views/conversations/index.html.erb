@@ -33,11 +33,13 @@
           <% elsif admin_signed_in? %>
             <% recipient = User.find(conversation.recipient_id) %>
             <% sender = User.find(conversation.sender_id) %>
-            <div class="well row <%= cycle('white-bg', '') %>">
-              <p class="text-center fix-margin">
-              Conversation between <%= link_to recipient.username, conversation_messages_path(conversation) %>
-               and <%= link_to sender.username, conversation_messages_path(conversation) %></p>
-            </div>
+            <% if sender != nil && recipient != nil %>
+              <div class="well row <%= cycle('white-bg', '') %>">
+                <p class="text-center fix-margin">
+                Conversation between <%= link_to recipient.username, conversation_messages_path(conversation) %>
+                 and <%= link_to sender.username, conversation_messages_path(conversation) %></p>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
       </ul>

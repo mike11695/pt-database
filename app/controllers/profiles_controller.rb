@@ -43,13 +43,14 @@ class ProfilesController < ApplicationController
       #Redirect user to profile page
       redirect_to user_path(id: params[:user_id] )
     else 
+      flash[:danger] = @profile.errors.full_messages.join(", ")
       render action: :edit
     end
   end
   
   private
     def profile_params
-      params.require(:profile).permit(:avatar, :title, :description)
+      params.require(:profile).permit(:avatar, :description, :neoname)
     end
     def only_current_user
       @user = User.find( params[:user_id] )

@@ -3,50 +3,6 @@
     <%= f.label :name %>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
-  <div class="form-group row col-sm-7">
-    <% colors_array = [['8-Bit'], ['Agueena'], ['Alien'], ['Apple'], 
-    ['Asparagus'], ['Aubergine'], ['Avocado'], ['Baby'], ['Biscuit'], 
-    ['Blue'], ['Blueberry'], ['Brown'], ['Camouflage'], ['Carrot'], 
-    ['Checkered'], ['Chocolate'], ['Chokato'], ['Christmas'], 
-    ['Clay'], ['Cloud'], ['Coconut'], ['Custard'], ['Darigan'], 
-    ['Desert'], ['Dimensional'], ['Disco'], ['Durian'], 
-    ['Elderlyboy'], ['Elderlygirl'], ['Electric'], ['Eventide'], 
-    ['Faerie'], ['Fire'], ['Garlic'], ['Ghost'], ['Glowing'], 
-    ['Gold'], ['Gooseberry'], ['Grape'], ['Green'], ['Grey'], 
-    ['Halloween'], ['Ice'], ['Invisible'], ['Island'], ['Jelly'], 
-    ['Lemon'], ['Lime'], ['Magma'], ['Mallow'], ['Maractite'], 
-    ['Maraquan'], ['Msp'], ['Mutant'], ['Onion'], ['Orange'], 
-    ['Pastel'], ['Pea'], ['Peach'], ['Pear'], ['Pepper'], 
-    ['Pineapple'], ['Pink'], ['Pirate'], ['Plum'], ['Plushie'], 
-    ['PolkaDot'], ['Purple'], ['Quigukiboy'], ['Quigukigirl'], 
-    ['Rainbow'], ['Red'], ['Relic'], ['Robot'], ['Royalboy'], 
-    ['Royalgirl'], ['Shadow'], ['Silver'], ['Sketch'], ['Skunk'], 
-    ['Snot'], ['Snow'], ['Speckled'], ['Split'], ['Sponge'], 
-    ['Spotted'], ['Starry'], ['Stealthy'], ['Strawberry'], 
-    ['Striped'], ['SwampGas'], ['Thornberry'], ['Tomato'], 
-    ['Transparent'], ['Tyrannian'], ['Ummagine'], ['UsukiBoy'], 
-    ['UsukiGirl'], ['Water'], ['White'], ['Woodland'], ['Wraith'], 
-    ['Yellow'], ['Zombie']] %>
-    <%= f.label :color %>
-    <%= f.select :color, colors_array, class: 'form-control' %>
-  </div>
-  <div class="form-group row col-sm-6">
-    <% species_array = [['Acara'], ['Aisha'], ['Blumaroo'], 
-    ['Bori'], ['Bruce'], ['Buzz'], ['Chia'], ['Chomby'], 
-    ['Cybunny'], ['Draik'], ['Elephante'], ['Eyrie'], 
-    ['Flotsam'], ['Gelert'], ['Gnorbu'], ['Grarrl'], 
-    ['Grundo'], ['Hissi'], ['Ixi'], ['Jetsam'], ['Jubjub'], 
-    ['Kacheek'], ['Kau'], ['Kiko'], ['Koi'], ['Korbat'], 
-    ['Kougra'], ['Krawk'], ['Kyrii'], ['Lenny'], ['Lupe'], 
-    ['Lutari'], ['Meerca'], ['Moehog'], ['Mynci'], 
-    ['Nimmo'], ['Ogrin'], ['Peophin'], ['Poogle'], 
-    ['Pteri'], ['Quiggle'], ['Ruki'], ['Scorchio'], 
-    ['Shoyru'], ['Skeith'], ['Techo'], ['Tonu'], 
-    ['Tuskaninny'], ['Uni'], ['Usul'], ['Vandagyre'], 
-    ['Wocky'], ['Xweetok'], ['Yurble'], ['Zafara']]%>
-    <%= f.label :species %>
-    <%= f.select :species, species_array, class: 'form-control' %>
-  </div>
   <div class="form-group">
     <%= f.label :gender %>
     <%= f.select :gender, [['Male'], ['Female']], class: 'form-control' %>

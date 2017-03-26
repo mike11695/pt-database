@@ -10,3 +10,6 @@ sanitize text fields
 add un field for profiles
 Make a list of allowed sites
 Browser Account Saving
+
+Error messages not showing on edit profile
+Admins can't update user account settings (changes going to wrong account)

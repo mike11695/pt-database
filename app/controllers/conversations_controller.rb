@@ -1,6 +1,12 @@
 class ConversationsController < ApplicationController
   def index
     @users = User.includes(:profile)
+    # delete conversations if a user no longer exists
+    Conversation.all.each do |conversation|
+      if User.where(:id => conversation.sender_id).blank? || User.where(:id => conversation.recipient_id).blank?
+        conversation.destroy
+      end
+    end
     @conversations = Conversation.all.order("created_at DESC")
   end
   

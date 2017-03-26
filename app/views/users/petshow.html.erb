@@ -36,11 +36,21 @@
             <h5><%= @pet.color %> <%= @pet.species %></h5>
             <h5><%= sanitize @pet.description, tags: %w(), attributes: %w() %></h5>
             <hr class="style-one"/>
-            <p>Level: <%= @pet.level %></p>
-            <p>Hit Points: <%= @pet.hp %></p>
-            <p>Strength: <%= @pet.strength %></p>
-            <p>Defence: <%= @pet.defence %></p>
-            <p>Movement: <%= @pet.movement %></p>
+            <% if @pet.level %>
+              <p>Level: <%= @pet.level %></p>
+            <% end %>
+            <% if @pet.hp %>
+              <p>Hit Points: <%= @pet.hp %></p>
+            <% end %>
+            <% if @pet.strength %>
+              <p>Strength: <%= @pet.strength %></p>
+            <% end %>
+            <% if @pet.defence %>
+              <p>Defence: <%= @pet.defence %></p>
+            <% end %>
+            <% if @pet.movement %>
+              <p>Movement: <%= @pet.movement %></p>
+            <% end %>
             <p>HSD: <%= @pet.hsd %></p>
             <% if admin_signed_in? %>
               <%= link_to "Edit Pet", controller: "pets", action: "edit", user_id: @pet.user.id, id: @pet.id %>

@@ -5,11 +5,15 @@
       <h1 class="text-center">Opps!</h4>
       <p class="text-center">This user has been banned.  Nothing to see here, move along.</p>
       <% else %>
-      <h4 class="text-center"><%= @user.username %>'s Profile</h4>
       <div class="well text-center">
         <%= image_tag @user.profile.avatar.url, class: 'avatar-show-img' %>
-        <h1><%= sanitize @user.profile.title, tags: %w(), attributes: %w() %></h1>
+        <h1><%= @user.username %>'s Pets</h1>
         <h5><%= sanitize @user.profile.description, tags: %w(), attributes: %w() %></h5>
+        <% unless @user.profile.neoname == "" || @user.profile.neoname == nil %>
+          <% name = sanitize @user.profile.neoname, tags: %w(), attributes: %w() %>
+          <% url = "http://www.neopets.com/userlookup.phtml?user=" + name %>
+          <p>Neopets UN: <%= link_to name, url %></p>
+        <% end %>
         <hr class="style-one"/>
         <% @pets.each do |pet| %>
           <% if pet.user.id == @user.id %>
