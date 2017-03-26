@@ -25,12 +25,7 @@
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
           </div>
-          <% if current_page?(new_admin_registration_path) %>
-            <div class="field form-group">
-              <%= f.label :authorization %>
-              <%= f.text_field :authorization, class: 'form-control' %>
-            </div>
-          <% end %>
+          
           <div class="actions form-group">
             <%= f.submit "Sign up", class: 'btn btn-success' %>
           </div>
