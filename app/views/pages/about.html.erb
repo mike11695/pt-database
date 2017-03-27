@@ -1,22 +1,44 @@
-<div class="text-center container-fluid">
+<div class="text-center container-fluid col-md-8 col-md-offset-2">
   <h1>About Pet Trading Database</h1><br/>
   <p>
   Pet Trading Database is a site where users of Neopets can find and list 
   pets up for trade or up for adoption.  You'll be able to create an account 
   and profile that will show all your pets up for trade and adoption when another 
-  user clicks on your profile.  Users can then message you through the site, so 
-  you don't have to worry about them mention Pet Trading Database in a neomail!
+  user clicks on your profile.  Users can then message you through the site, 
+  or through Neopets if you provide your UN!
   </p></br>
   <p>Site developed by mike11695</p>
-</div>
-<br/>
-<div class="text-center container-fluid">
-  <div class="divider">
-  <div class="center">
-    <%= image_tag("alienaisha.gif") %>
+  <p>Special thanks to Kait for their help and ideas</p>
+  <div class="row row-line-break">
+    <hr class="line-break"/>
   </div>
-  </div>
-  <div class="ad">
-    Ads go here
+  <h2>How to Use the Site</h2><br/>
+  <p>An account and profile is required to submit a pet to the site, so that 
+  your pets are easily found and searchable by others. There is no limit to the 
+  number of pets you can advertise at once.</p>
+  <p>All profile fields are optional. If you don't want to personalize your 
+  profile you may leave everything blank.</p>
+  <p>You can contact users directly through in house messaging, or on Neopets 
+  directly if they have their username listed on their profile.</p>
+  <p>If you are no longer trading a pet, whether you already traded it or simply 
+  changed your mind, it is recommended that you remove them from the site to 
+  prevent people from making unwanted contact.</p>
+  <p>You can find all pets currently available by visiting the "Pets" tab, or 
+  you may use the search functions on the Home page to filter your results.</p>
+  <p>Pet information can be changed or updated at any point in time, as often 
+  as you need. To do so, visit a pet's profile and select "Edit." If you are 
+  only updating the color or species, you do not need to manually change 
+  the fields. Simply selecting "Update Pet" will automatically update them.</p>
+  <p>If you see anything malicious or unwanted on the site, including pets 
+  that should not be listed, please contact us through the <%= link_to "report form", new_report_path %> 
+  and an admin will take care of it ASAP.</p>
+  <br/>
+  <div class="text-center container-fluid">
+    <div class="divider">
+    <div class="center">
+      <%= image_tag("alienaisha.gif") %>
+    </div>
+    <br/>
+    </div>
   </div>
 </div>

@@ -155,3 +155,11 @@ p {
 .hide-overflow {
   overflow: hidden;
 }
+
+.rules-container {
+  background: white;
+  border: 1px solid grey;
+  overflow: auto;
+  padding: 10px;
+}
+

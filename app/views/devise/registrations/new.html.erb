@@ -31,6 +31,12 @@
               <%= f.text_field :authorization, class: 'form-control' %>
             </div>
           <% end %>
+          <div class="field form-group">
+            <p><%= f.check_box :terms %> I have read and agree to the <%= link_to "Rules", rules_path %></p>
+          </div>
+          <div class="field form-group">
+            <p><%= f.check_box :age %> I am 13 years of age or older</p>
+          </div>
           <div class="actions form-group">
             <%= f.submit "Sign up", class: 'btn btn-success' %>
           </div>

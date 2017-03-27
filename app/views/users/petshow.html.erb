@@ -31,7 +31,8 @@
               <% end %>
             </div>
             <br/>
-            <%= image_tag "http://pets.neopets.com/cpn/" + @pet.name + "/1/5.png", class: 'pet-show-img' %>
+            <% link = "http://www.neopets.com/petlookup.phtml?pet=" + @pet.name %>
+            <%= link_to image_tag("http://pets.neopets.com/cpn/" + @pet.name + "/1/5.png", class: 'pet-show-img'), link %>
             <h1><%= @pet.name %></h1>
             <h5><%= @pet.color %> <%= @pet.species %></h5>
             <h5><%= sanitize @pet.description, tags: %w(), attributes: %w() %></h5>
@@ -53,15 +54,15 @@
             <% end %>
             <p>HSD: <%= @pet.hsd %></p>
             <% if admin_signed_in? %>
-              <%= link_to "Edit Pet", controller: "pets", action: "edit", user_id: @pet.user.id, id: @pet.id %>
-              <br/>
-              <%= link_to "Delete Pet", {controller: :pets, action: :destroy, user_id: @pet.user.id, id: @pet.id }, data: {:confirm => 'Are you sure?'}, :method => :delete %>
+              <p><%= link_to "Edit Pet", {controller: "pets", action: "edit", user_id: @pet.user.id, id: @pet.id }, class: 'btn btn-primary' %>
+              <%= link_to "Delete Pet", {controller: :pets, action: :destroy, user_id: @pet.user.id, id: @pet.id }, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-danger' %></p>
             <% else %>
               <% if user_signed_in? %>
               <% if current_user.id == @pet.user.id %>
-                <%= link_to "Edit Pet", controller: "pets", action: "edit", user_id: @pet.user.id, id: @pet.id %>
-                </br>
-                <%= link_to "Delete Pet", {controller: :pets, action: :destroy, user_id: @pet.user.id, id: @pet.id }, data: {:confirm => 'Are you sure?'}, :method => :delete %>
+                <p><%= link_to "Edit Pet", {controller: "pets", action: "edit", user_id: @pet.user.id, id: @pet.id }, class: 'btn btn-primary' %>
+                <%= link_to "Delete Pet", {controller: :pets, action: :destroy, user_id: @pet.user.id, id: @pet.id }, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-danger' %></p>
+              <% else %>
+                <%= link_to "Report Pet", new_report_path, class: 'btn btn-danger' %>
               <% end %>
             <% end %>
             <% end %>

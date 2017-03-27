@@ -6,10 +6,17 @@
 
 Things to fix:
 error messages not showing, freezing [Fixed]
-sanitize text fields
-add un field for profiles
+sanitize text fields - fixed
+add un field for profiles - fixed
 Make a list of allowed sites
 Browser Account Saving
 
-Error messages not showing on edit profile
-Admins can't update user account settings (changes going to wrong account)
+Error messages not showing on edit profile -fixed
+Admins can't update user account settings (changes going to wrong account) - fixed
+
+Add "Report Pet" link to pet profiles - Done
+Add a rules page - Done, still need to link it on sign up - Done
+Add a tutorials page - Done
+Have users confirm their 13+ - Done
+Link to pets lookup from pets profile - Done
+Change links on user profiles to buttons - Done

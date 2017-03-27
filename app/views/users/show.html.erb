@@ -29,15 +29,18 @@
         <br/>
         <% if user_signed_in? %>
           <% if current_user.id != @user.id %>
-            <p><%= link_to "Message me!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: "post" %></p>
+            <p>
+            <%= link_to "Message me!", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: "post", class: 'btn btn-primary' %>
+            <%= link_to "Report User", new_report_path, class: 'btn btn-danger' %>
+            </p>
           <% end %>
           <% if current_user.id == @user.id %>
-            <p><%= link_to "Edit Profile", edit_user_profile_path(user_id: current_user.id) %></p>
+            <p><%= link_to "Edit Profile", edit_user_profile_path(user_id: current_user.id), class: 'btn btn-primary' %></p>
           <% end %>
         <% end %>
         <% if admin_signed_in? %>
-            <p><%= link_to "Edit Profile", edit_user_profile_path(user_id: @user.id) %></p>
-            <p><%= link_to "Edit User", edit_user_path(id: @user.id) %></p>
+            <p><%= link_to "Edit Profile", edit_user_profile_path(user_id: @user.id), class: 'btn btn-primary' %>
+            <%= link_to "Edit User", edit_user_path(id: @user.id), class: 'btn btn-primary' %></p>
         <% end %>
       </div>
       <%= link_to "Back", :back %>
