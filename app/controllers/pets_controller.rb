@@ -207,7 +207,7 @@ class PetsController < ApplicationController
   
   private
     def pet_params
-      params.require(:pet).permit(:name, :color, :species, :level, :hp, :strength, :defence, :movement, :hsd, :uc, :rw, :rn, :verified, :description, :uft, :ufa, :gender, :id)
+      params.require(:pet).permit(:name, :color, :species, :level, :hp, :strength, :defence, :movement, :hsd, :uc, :rw, :rn, :verified, :description, :uft, :ufa, :gender, :id, :agreement)
     end
     def only_current_user
       @user = User.find( params[:user_id] )

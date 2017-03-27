@@ -57,6 +57,10 @@
     <%= f.label :description %>: Seeking anything specific?  Anything special about the pet?
     <%= f.text_area :description, class: 'form-control' %>
   </div>
+  <div class="field form-group">
+    <p><%= f.check_box :agreement %> I acknowledge that I have read the above 
+    statements and said pet is indeed UFT/UFA.</p>
+  </div>
   <br/>
   <div class="form-group">
     <%= f.submit "Update Pet", class: 'btn btn-primary', id: 'form-signup-btn' %>

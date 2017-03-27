@@ -3,6 +3,7 @@ class Pet < ActiveRecord::Base
   validates :description, length: { maximum: 500,
     too_long: "%{count} characters is the maximum allowed for descriptions." }, 
     obscenity: true
+  validates :agreement, acceptance: true
   validates :name, uniqueness: {message: "Opps, this pet is already in the database!"}, length: { maximum: 20,
     too_long: "%{count} characters is the maximum allowed for names." }, format: { with: /\A[a-zA-Z0-9\_]+\z/, message: "can only have numbers, letters and underscores." }, 
     obscenity: true
