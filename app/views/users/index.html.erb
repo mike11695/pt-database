@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <h1 class="text-center">Pet Trading Database Users</h1>
-      <p class="text-center">Welcome to the PTD community.  Users must fill out a profile in order to be visible in the community.</p>
+      <h1 class="text-center">PetTP Users</h1>
+      <p class="text-center">Welcome to the PetTP community.  Users must fill out a profile in order to be visible in the community.</p>
       <h3 class="text-center">Find a User</h3>
       <%= form_tag users_path, :method => :get do |f| %>
         <%= text_field_tag :unamesearch, params[:unamesearch], placeholder: "Search Username", class: 'users-inline' %>
