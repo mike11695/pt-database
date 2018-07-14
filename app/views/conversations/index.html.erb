@@ -20,13 +20,10 @@
               <% else %>
                 <% recipient = User.find(conversation.sender_id) %>
               <% end %>
-              <div class="well row <%= cycle('white-bg', '') %>">
-                <div class="col-md-2">
-                  <%= image_tag recipient.profile.avatar.url, class: 'user-index-avatar' %>
-                </div>
-                <div class="col-md-8">
-                  <p class="text-center fix-margin">
-                Conversation with <%= link_to recipient.username, conversation_messages_path(conversation) %></p>
+              <div class="well row <%= cycle('white-bg', '') %> conversation-box">
+                <div class="col-md-12">
+                  <p class="text-center">
+                  Conversation with <%= link_to recipient.username, conversation_messages_path(conversation) %></p>
                 </div>
               </div>
             <% end %>
@@ -34,8 +31,8 @@
             <% recipient = User.find(conversation.recipient_id) %>
             <% sender = User.find(conversation.sender_id) %>
             <% if sender != nil && recipient != nil %>
-              <div class="well row <%= cycle('white-bg', '') %>">
-                <p class="text-center fix-margin">
+              <div class="well row <%= cycle('white-bg', '') %> conversation-box-2">
+                <p class="text-center">
                 Conversation between <%= link_to recipient.username, conversation_messages_path(conversation) %>
                  and <%= link_to sender.username, conversation_messages_path(conversation) %></p>
               </div>

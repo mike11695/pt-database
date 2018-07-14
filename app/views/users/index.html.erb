@@ -14,15 +14,9 @@
           <% if user.profile && user.banned == false %>
             <li>
               <div class="well row <%= cycle('white-bg', '') %>">
-                <div class="col-sm-2 text-center">
-                  <% if user.profile.avatar %>
-                    <%= link_to user do %>
-                      <%= image_tag user.profile.avatar.url, class: 'user-index-avatar' %>
-                    <% end %>
-                  <% end %>
-                </div>
+                
                 <div>
-                  <div class="col-sm-8">
+                  <div class="col-sm-10">
                     <%= link_to user do %>
                       <h2 class="inline"><%= user.username %></h2>
                     <% end %>

@@ -50,7 +50,7 @@ class ProfilesController < ApplicationController
   
   private
     def profile_params
-      params.require(:profile).permit(:avatar, :description, :neoname)
+      params.require(:profile).permit(:description, :neoname)
     end
     def only_current_user
       @user = User.find( params[:user_id] )

@@ -31,11 +31,12 @@
               <li><%= link_to "Users", users_path %></li>
               <li><%= link_to "Verify Pets", verification_path %></li>
               <li><%= link_to "Pets", pets_path %></li>
-               <li><%= link_to "User Conversations", conversations_path %></li>
+              <li><%= link_to "User Conversations", conversations_path %></li>
+              <li><%= link_to "My Account", edit_admin_registration_path %></li>
               <li><%= link_to "Log Out", destroy_admin_session_path, method: :delete %></li>
             <% else %>
-            <li><%= link_to "About", about_path %></li>
-            <li><%= link_to "Contact Us", new_contact_path %></li>
+              <li><%= link_to "About", about_path %></li>
+              <li><%= link_to "Contact Us", new_contact_path %></li>
             <% if user_signed_in? %>
               <% if current_user.profile %>
               <li><%= link_to "View Profile", user_path(id: current_user.id) %></li>

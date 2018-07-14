@@ -6,7 +6,6 @@
       <p class="text-center">This user has been banned.  Nothing to see here, move along.</p>
       <% else %>
       <div class="well text-center">
-        <%= image_tag @user.profile.avatar.url, class: 'avatar-show-img' %>
         <h1><%= @user.username %>'s Pets</h1>
         <h5><%= sanitize @user.profile.description, tags: %w(), attributes: %w() %></h5>
         <% unless @user.profile.neoname == "" || @user.profile.neoname == nil %>

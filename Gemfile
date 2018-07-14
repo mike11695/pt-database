@@ -63,7 +63,7 @@ group :development, :test do
   gem 'sqlite3'
   
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+  gem 'byebug', :platform => [:mri]
 end
 
 group :development do
@@ -80,5 +80,4 @@ group :production do
   gem 'pg', '0.18.4'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-ruby '2.3.0'
+gem 'tzinfo-data', :platforms => [:mingw, :mswin, :jruby]
