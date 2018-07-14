@@ -33,31 +33,37 @@
               </div>
               <% if admin_signed_in? %>
               <div class="form-group">
-                <%= f.label :uc %>
-                <%= f.check_box :uc, class: 'form-control' %>
+                <%= f.label "Unconverted?", class: "align" %>
+                <%= f.check_box :uc, class: "col-md-8" %>
               </div>
+              <br><br><br>
               <div class="form-group">
-                <%= f.label :rw %>
-                <%= f.check_box :rw, class: 'form-control' %>
+                <%= f.label "Real Word?", class: "align" %>
+                <%= f.check_box :rw, class: 'col-md-8' %>
               </div>
+              <br><br>
               <div class="form-group">
-                <%= f.label :rn %>
-                <%= f.check_box :rn, class: 'form-control' %>
+                <%= f.label "Real Name?", class: "align" %>
+                <%= f.check_box :rn, class: 'col-md-8' %>
               </div>
+              <br><br>
               <% end %>
               <div class="form-group">
-                <%= f.label :uft %>
-                <%= f.check_box :uft, class: 'form-control' %>
+                <%= f.label "Up For Trade?", class: "align" %>
+                <%= f.check_box :uft, class: 'col-md-8' %>
               </div>
+              <br><br>
               <div class="form-group">
-                <%= f.label :ufa %>
-                <%= f.check_box :ufa, class: 'form-control' %>
+                <%= f.label "Up For Adoption?", class: "align" %>
+                <%= f.check_box :ufa, class: 'col-md-8' %>
               </div>
+              <br><br>
               <% if admin_signed_in? %>
               <div class="form-group">
-                <%= f.label :verified %>
-                <%= f.check_box :verified, class: 'form-control' %>
+                <%= f.label :verified, class: "align" %>
+                <%= f.check_box :verified, class: 'col-md-8' %>
               </div>
+              <br><br>
               <% end %>
               <div class="form-group">
                 <%= f.label :description %>: Seeking anything specific?  Anything special about the pet?

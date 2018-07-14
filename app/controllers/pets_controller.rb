@@ -156,7 +156,7 @@ class PetsController < ApplicationController
     require 'json'
     
     # using params in case later we decide users can update an old pet with a different pet
-    url = "http://neopia.openneo.net/api/1/pets/" + params[:pet][:name] + "/customization"
+    url = "http://www.neopets.com/amfphp/json.php/CustomPetService.getViewerData/" + @pet.name
     uri = URI(url)
     response = Net::HTTP.get(uri)
     data = JSON.parse(response)
