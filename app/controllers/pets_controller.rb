@@ -59,7 +59,7 @@ class PetsController < ApplicationController
     require 'net/http'
     require 'json'
     
-    url = "http://neopia.openneo.net/api/1/pets/" + @pet.name + "/customization"
+    url = "http://www.neopets.com/amfphp/json.php/CustomPetService.getViewerData/" + @pet.name
     uri = URI(url)
     response = Net::HTTP.get(uri)
     data = JSON.parse(response)
