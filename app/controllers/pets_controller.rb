@@ -54,7 +54,8 @@ class PetsController < ApplicationController
       ['Striped', 77], ['SwampGas', 93], ['Thornberry', 78], ['Tomato', 79], 
       ['Transparent', 90], ['Tyrannian', 80], ['Ummagine', 103], ['UsukiBoy', 81], 
       ['UsukiGirl', 82], ['Water', 94], ['White', 83], ['Woodland', 89], ['Wraith', 95], 
-      ['Yellow', 84], ['Zombie', 85], ['Candy', 105], ['Marble', 106]];
+      ['Yellow', 84], ['Zombie', 85], ['Candy', 105], ['Marble', 106], 
+      ['Steampunk', 107], ['Toy', 108], ['Origami', 109]];
     
     require 'net/http'
     require 'json'
@@ -150,7 +151,8 @@ class PetsController < ApplicationController
       ['Striped', 77], ['SwampGas', 93], ['Thornberry', 78], ['Tomato', 79], 
       ['Transparent', 90], ['Tyrannian', 80], ['Ummagine', 103], ['UsukiBoy', 81], 
       ['UsukiGirl', 82], ['Water', 94], ['White', 83], ['Woodland', 89], ['Wraith', 95], 
-      ['Yellow', 84], ['Zombie', 85], ['Candy', 105], ['Marble', 106]];
+      ['Yellow', 84], ['Zombie', 85], ['Candy', 105], ['Marble', 106], 
+      ['Steampunk', 107], ['Toy', 108], ['Origami', 109]];
     
     require 'net/http'
     require 'json'
