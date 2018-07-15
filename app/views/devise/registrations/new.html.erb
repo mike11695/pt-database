@@ -1,3 +1,6 @@
+<% if current_page?("/admins/sign_up") %>
+  
+<% end %>
 <div class="container">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
@@ -25,12 +28,6 @@
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
           </div>
-          <% if current_page?("/admins/sign_up") %>
-            <div class="field form-group">
-              <%= f.label :authorization %>
-              <%= f.text_field :authorization, class: 'form-control' %>
-            </div>
-          <% end %>
           <div class="field form-group">
             <p><%= f.check_box :terms %> I have read and agree to the <%= link_to "Rules", rules_path %></p>
           </div>
