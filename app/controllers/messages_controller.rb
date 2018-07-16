@@ -16,13 +16,25 @@ class MessagesController < ApplicationController
       @messages = @conversation.messages
     end
     
-    if @messages.last
-      
-      if admin_signed_in? || @messages.last.user_id != current_user.id
-        @messages.last.read = true;
+    @messages.each do |message|
+      if user_signed_in?
+        if message.user_id != current_user.id
+          if message.read == false
+            message.read = true
+            message.save
+          end
+        end
       end
-      
     end
+    
+    #if @messages.last
+      
+      #if admin_signed_in? || @messages.last.user_id != current_user.id
+        #@messages.last.read = true;
+      
+      #end
+      
+    #end
     
     @message = @conversation.messages.new
     

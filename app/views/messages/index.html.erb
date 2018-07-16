@@ -12,6 +12,9 @@
         <div class="ui segment">
          <% @messages.each do |message| %>
           <% if message.body %>
+            <% if message.read == false %>
+              <% message.read = true %>
+            <% end %>
             <% user = User.find(message.user_id) %>
               <div class="item">
                <div class="content">

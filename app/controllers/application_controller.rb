@@ -3,12 +3,26 @@ class ApplicationController < ActionController::Base
   
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :banned?
+  before_filter :convo
   
   def banned?
     if current_user.present? && current_user.banned?
       sign_out current_user
       flash[:error] = "This account has been banned for violating site rules."
       root_path
+    end
+  end
+  
+  def convo
+    @unread = 0
+    @users = User.includes(:profile)
+    @conversations = Conversation.all.order("created_at DESC")
+    if user_signed_in?
+      @conversations.each do |conversation|
+        if conversation.messages.last.read == false && conversation.messages.last.user_id != current_user.id
+          @unread += 1
+        end
+      end
     end
   end
 

@@ -5,6 +5,7 @@
       <% if user_signed_in? %>
       <h1 class="text-center">Mailbox</h1>
       <p class="text-center">If another user messages you, you'll find it in the list below.</p>
+      <p class="text-center">Any conversations with unread messages will have a light yellow background</p>
       <p class="text-center">Please delete old conversations occasionally, our server would appreciate it!</p>
       <% elsif admin_signed_in? %>
         <h1 class="text-center">User Conversations</h1>
@@ -20,12 +21,21 @@
               <% else %>
                 <% recipient = User.find(conversation.sender_id) %>
               <% end %>
-              <div class="well row <%= cycle('white-bg', '') %> conversation-box">
-                <div class="col-md-12">
-                  <p class="text-center">
-                  Conversation with <%= link_to recipient.username, conversation_messages_path(conversation) %></p>
+              <% if conversation.messages.last && conversation.messages.last.user_id != current_user.id && conversation.messages.last.read == false && user_signed_in? %>
+                <div class="well row unread-bg conversation-box">
+                  <div class="col-md-12">
+                    <p class="text-center">
+                    Conversation with <%= link_to recipient.username, conversation_messages_path(conversation) %></p>
+                  </div>
                 </div>
-              </div>
+              <% else %>
+                <div class="well row <%= cycle('white-bg', '') %> conversation-box">
+                  <div class="col-md-12">
+                    <p class="text-center">
+                    Conversation with <%= link_to recipient.username, conversation_messages_path(conversation) %></p>
+                  </div>
+                </div>
+              <% end %>
             <% end %>
           <% elsif admin_signed_in? %>
             <% recipient = User.find(conversation.recipient_id) %>
