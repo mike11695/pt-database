@@ -16,11 +16,15 @@ class ApplicationController < ActionController::Base
   def convo
     @unread = 0
     @users = User.includes(:profile)
-    @conversations = Conversation.all.order("created_at DESC")
+    if Conversation
+      @conversations = Conversation.all.order("created_at DESC")
+    end
     if user_signed_in?
       @conversations.each do |conversation|
-        if conversation.messages.last.read == false && conversation.messages.last.user_id != current_user.id
-          @unread += 1
+        if conversation.messages.last
+          if conversation.messages.last.read == false && conversation.messages.last.user_id != current_user.id
+            @unread += 1
+          end
         end
       end
     end
