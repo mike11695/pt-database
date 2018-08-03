@@ -14,8 +14,8 @@
  *= require_self
  */
  
-@import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import 'bootstrap-sprockets';
 
 // Typography style for headers
 h1, h2, h3 {
@@ -183,8 +183,7 @@ p {
 }
 
 .check {
-  height: 20px;
-  width: 20px;
+  position: absolute;
 }
 
 .unread-bg {

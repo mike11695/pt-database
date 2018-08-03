@@ -6,6 +6,8 @@
       <%= image_tag("alienaisha.gif") %>
     </div>
   </div>
+  <br>
+  <h3>Pets listed: <%= @pets.where(verified: true).count %></h3>
   <div class="row">
     <div class="well search-well">
       <h3>Search by Color and/or Species</h3>

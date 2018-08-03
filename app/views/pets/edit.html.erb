@@ -33,37 +33,36 @@
               </div>
               <% if admin_signed_in? %>
               <div class="form-group">
-                <%= f.label "Unconverted?", class: "align" %>
-                <%= f.check_box :uc, class: "col-md-8" %>
+                <%= f.check_box :uc %>
+                <%= f.label "Unconverted?", class: "col-md-3 align" %>
               </div>
-              <br><br><br>
+              <br>
               <div class="form-group">
-                <%= f.label "Real Word?", class: "align" %>
-                <%= f.check_box :rw, class: 'col-md-8' %>
+                 <%= f.check_box :rw %>
+                <%= f.label "Real Word?", class: "col-md-3 align" %>
               </div>
-              <br><br>
+              <br>
               <div class="form-group">
-                <%= f.label "Real Name?", class: "align" %>
-                <%= f.check_box :rn, class: 'col-md-8' %>
+                <%= f.check_box :rn %>
+                <%= f.label "Real Name?", class: "col-md-3 align" %>
               </div>
-              <br><br>
+              <br>
               <% end %>
               <div class="form-group">
-                <%= f.label "Up For Trade?", class: "align" %>
-                <%= f.check_box :uft, class: 'col-md-8' %>
+                <%= f.check_box :uft %>
+                <%= f.label "Up For Trade?", class: "col-md-3 align" %>
               </div>
-              <br><br>
+              <br>
               <div class="form-group">
-                <%= f.label "Up For Adoption?", class: "align" %>
-                <%= f.check_box :ufa, class: 'col-md-8' %>
+                <%= f.check_box :ufa %>
+                <%= f.label "Up For Adoption?", class: "col-md-3 align" %>
               </div>
-              <br><br>
+              <br>
               <% if admin_signed_in? %>
               <div class="form-group">
-                <%= f.label :verified, class: "align" %>
-                <%= f.check_box :verified, class: 'col-md-8' %>
+                <%= f.check_box :verified %>
+                <%= f.label :verified, class: 'col-md-3 align' %>
               </div>
-              <br><br>
               <% end %>
               <div class="form-group">
                 <%= f.label :description %>: Seeking anything specific?  Anything special about the pet?
