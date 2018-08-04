@@ -64,7 +64,7 @@ class UsersController < ApplicationController
       @pets = Pet.speciessearch(params[:speciessearch]).where(verified: true).order("id DESC")
       @pets = @pets.ucsearch(params[:ucsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       if params[:uftsearch].present? && params[:ufasearch].present?
-        @pets = (@pets).paginate(:page => params[:page], :per_page => 20).where(verified: true).order("id DESC")
+        @pets = (@pets).where(verified: true).paginate(:page => params[:page], :per_page => 20).order("id DESC")
       elsif params[:uftsearch].present?
         @pets = @pets.uftsearch(params[:uftsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       elsif params[:ufasearch].present?
@@ -146,7 +146,7 @@ class UsersController < ApplicationController
   
   def verification
     @users = User.includes(:pet)
-    @pets = Pet.includes(:user).where(verified: false).paginate(:page => params[:page]).order("id DESC")
+    @pets = Pet.includes(:user).where(verified: false).paginate(:page => params[:page]).order("id DESC").reverse_order
   end
   
   def edit
