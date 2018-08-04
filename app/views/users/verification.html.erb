@@ -4,6 +4,8 @@
       <h1 class="text-center">Pet Trading Database Pets</h1>
       <p class="text-center">Pets awaiting verification</p>
       <br/>
+      <h4><%= will_paginate @pets, class: 'text-center' %></h4>
+      <br>
       <ul class="list-unstyled">
         <% @pets.each do |pet| %>
         <% if pet.verified == false %>

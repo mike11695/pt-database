@@ -54,4 +54,6 @@ class Pet < ActiveRecord::Base
     where(:ufa => ufasearch != "false")
   end
   
+  self.per_page = 20
+  
 end

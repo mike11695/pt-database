@@ -24,4 +24,6 @@ class User < ApplicationRecord
   def email_changed?
     false
   end
+  
+  self.per_page = 20
 end
