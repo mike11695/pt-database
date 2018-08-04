@@ -24,8 +24,4 @@ class User < ApplicationRecord
   def email_changed?
     false
   end
-  
-  def banned?
-    false
-  end
 end
