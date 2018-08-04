@@ -14,122 +14,122 @@ class UsersController < ApplicationController
     @users = User.includes(:pet)
     
     if params[:namesearch].present?
-      @pets = Pet.namesearch(params[:namesearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.namesearch(params[:namesearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:colorsearch].present? && params[:speciessearch].present?
-      @pets = Pet.colorsearch(params[:colorsearch]).order("created_at DESC")
-      @pets = @pets.speciessearch(params[:speciessearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.colorsearch(params[:colorsearch]).where(verified: true).order("created_at DESC")
+      @pets = @pets.speciessearch(params[:speciessearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       if params[:ucsearch].present? && params[:uftsearch].present? && params[:ufasearch].present?
-        @pets = @pets.ucsearch(params[:colorsearch]).paginate(:page => params[:page]).order("id DESC")
+        @pets = @pets.ucsearch(params[:colorsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       elsif params[:ucsearch].present? && params[:uftsearch].present?
-        @pets = @pets.ucsearch(params[:colorsearch]).order("created_at DESC")
-        @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page]).order("id DESC")
+        @pets = @pets.ucsearch(params[:colorsearch]).where(verified: true).order("created_at DESC")
+        @pets = @pets.uftsearch(params[:uftsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       elsif params[:ucsearch].present? && params[:ufasearch].present?
-        @pets = @pets.ucsearch(params[:colorsearch]).order("created_at DESC")
-        @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page]).order("id DESC")
+        @pets = @pets.ucsearch(params[:colorsearch]).where(verified: true).order("created_at DESC")
+        @pets = @pets.ufasearch(params[:ufasearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       elsif params[:ucsearch].present?
-        @pets = @pets.ucsearch(params[:colorsearch]).paginate(:page => params[:page]).order("id DESC")
+        @pets = @pets.ucsearch(params[:colorsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       elsif params[:uftsearch].present?
-        @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page]).order("id DESC")
+        @pets = @pets.uftsearch(params[:uftsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       elsif params[:ufasearch].present?
-        @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page]).order("id DESC")
+        @pets = @pets.ufasearch(params[:ufasearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       end
       
     elsif params[:colorsearch].present? && params[:ucsearch].present?
-      @pets = Pet.colorsearch(params[:colorsearch]).order("id DESC")
-      @pets = @pets.ucsearch(params[:ucsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.colorsearch(params[:colorsearch]).where(verified: true).order("id DESC")
+      @pets = @pets.ucsearch(params[:ucsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       if params[:uftsearch].present? && params[:ufasearch].present?
-        @pets = (@pets).paginate(:page => params[:page]).order("id DESC")
+        @pets = (@pets).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       elsif params[:uftsearch].present?
-        @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page]).order("id DESC")
+        @pets = @pets.uftsearch(params[:uftsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       elsif params[:ufasearch].present?
-        @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page]).order("id DESC")
+        @pets = @pets.ufasearch(params[:ufasearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       end
       
     elsif params[:colorsearch].present? && params[:uftsearch].present? && params[:ufasearch].present?
-      @pets = Pet.colorsearch(params[:colorsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.colorsearch(params[:colorsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:colorsearch].present? && params[:uftsearch].present?
-      @pets = Pet.colorsearch(params[:colorsearch]).order("id DESC")
-      @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.colorsearch(params[:colorsearch]).where(verified: true).order("id DESC")
+      @pets = @pets.uftsearch(params[:uftsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:colorsearch].present? && params[:ufasearch].present?
-      @pets = Pet.colorsearch(params[:colorsearch]).order("id DESC")
-      @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.colorsearch(params[:colorsearch]).where(verified: true).order("id DESC")
+      @pets = @pets.ufasearch(params[:ufasearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:colorsearch].present?
-      @pets = Pet.colorsearch(params[:colorsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.colorsearch(params[:colorsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:speciessearch].present? && params[:ucsearch].present?
-      @pets = Pet.speciessearch(params[:speciessearch]).order("id DESC")
-      @pets = @pets.ucsearch(params[:ucsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.speciessearch(params[:speciessearch]).where(verified: true).order("id DESC")
+      @pets = @pets.ucsearch(params[:ucsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       if params[:uftsearch].present? && params[:ufasearch].present?
-        @pets = (@pets).paginate(:page => params[:page], :per_page => 20).order("id DESC")
+        @pets = (@pets).paginate(:page => params[:page], :per_page => 20).where(verified: true).order("id DESC")
       elsif params[:uftsearch].present?
-        @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page]).order("id DESC")
+        @pets = @pets.uftsearch(params[:uftsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       elsif params[:ufasearch].present?
-        @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page]).order("id DESC")
+        @pets = @pets.ufasearch(params[:ufasearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       end
       
     elsif params[:speciessearch].present? && params[:uftsearch].present? && params[:ufasearch].present?
-      @pets = Pet.speciessearch(params[:speciessearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.speciessearch(params[:speciessearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:speciessearch].present? && params[:uftsearch].present?
-      @pets = Pet.speciessearch(params[:speciessearch]).order("id DESC")
-      @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.speciessearch(params[:speciessearch]).where(verified: true).order("id DESC")
+      @pets = @pets.uftsearch(params[:uftsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:speciessearch].present? && params[:ufasearch].present?
-      @pets = Pet.speciessearch(params[:speciessearch]).order("id DESC")
-      @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.speciessearch(params[:speciessearch]).where(verified: true).order("id DESC")
+      @pets = @pets.ufasearch(params[:ufasearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:speciessearch].present?
-      @pets = Pet.speciessearch(params[:speciessearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.speciessearch(params[:speciessearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:ucsearch].present? && params[:uftsearch].present? && params[:ufasearch].present?
-      @pets = Pet.ucsearch(params[:ucsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.ucsearch(params[:ucsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:ucsearch].present? && params[:uftsearch].present?
-      @pets = Pet.ucsearch(params[:ucsearch]).order("id DESC") 
-      @pets = @pets.uftsearch(params[:uftsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.ucsearch(params[:ucsearch]).where(verified: true).order("id DESC") 
+      @pets = @pets.uftsearch(params[:uftsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:ucsearch].present? && params[:ufasearch].present?
-      @pets = Pet.ucsearch(params[:ucsearch]).order("id DESC") 
-      @pets = @pets.ufasearch(params[:ufasearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.ucsearch(params[:ucsearch]).where(verified: true).order("id DESC") 
+      @pets = @pets.ufasearch(params[:ufasearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:ucsearch].present?
-      @pets = Pet.ucsearch(params[:ucsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.ucsearch(params[:ucsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:uftsearch].present? && params[:ufasearch].present?
-      @pets = Pet.includes(:user).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.includes(:user).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:uftsearch].present?
-      @pets = Pet.uftsearch(params[:uftsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.uftsearch(params[:uftsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:ufasearch].present?
-      @pets = Pet.ufasearch(params[:ufasearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.ufasearch(params[:ufasearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:rwsearch].present? && params[:rnsearch].present?
-      @rws = Pet.rwsearch(params[:rwsearch]).order("id DESC")
-      @rns = Pet.rnsearch(params[:rnsearch]).order("id DESC")
+      @rws = Pet.rwsearch(params[:rwsearch]).where(verified: true).order("id DESC")
+      @rns = Pet.rnsearch(params[:rnsearch]).where(verified: true).order("id DESC")
       @pets = @rws + @rns
       
     elsif params[:rwsearch].present?
-      @pets = Pet.rwsearch(params[:rwsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.rwsearch(params[:rwsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:rnsearch].present?
-      @pets = Pet.rnsearch(params[:rnsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.rnsearch(params[:rnsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:minbdsearch].present? && params[:maxbdsearch].present?
-      @pets = Pet.rangebdsearch(params[:minbdsearch], params[:maxbdsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.rangebdsearch(params[:minbdsearch], params[:maxbdsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:minbdsearch].present?
-      @pets = Pet.minbdsearch(params[:minbdsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.minbdsearch(params[:minbdsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:maxbdsearch].present?
-      @pets = Pet.maxbdsearch(params[:maxbdsearch]).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.maxbdsearch(params[:maxbdsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     else
-      @pets = Pet.includes(:user).paginate(:page => params[:page]).order("id DESC")
+      @pets = Pet.includes(:user).where(verified: true).paginate(:page => params[:page]).order("id DESC")
     end
   end
   
@@ -146,7 +146,7 @@ class UsersController < ApplicationController
   
   def verification
     @users = User.includes(:pet)
-    @pets = Pet.includes(:user).paginate(:page => params[:page]).order("id DESC")
+    @pets = Pet.includes(:user).where(verified: false).paginate(:page => params[:page]).order("id DESC")
   end
   
   def edit
