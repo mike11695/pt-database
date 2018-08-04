@@ -14,6 +14,18 @@ class Pet < ActiveRecord::Base
     where("name LIKE ?", "%#{namesearch}%") 
   end
   
+  def self.rangebdsearch(minbdsearch, maxbdsearch)
+   where("hsd >= ?", minbdsearch).where("hsd <= ?", maxbdsearch)
+  end
+  
+  def self.minbdsearch(minbdsearch)
+   where("hsd >= ?", minbdsearch)
+  end
+  
+  def self.maxbdsearch(maxbdsearch)
+   where("hsd <= ?", maxbdsearch)
+  end
+  
   def self.colorsearch(colorsearch)
     where("color LIKE ?", "%#{colorsearch}%")
   end

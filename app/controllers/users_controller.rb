@@ -119,6 +119,15 @@ class UsersController < ApplicationController
     elsif params[:rnsearch].present?
       @pets = Pet.rnsearch(params[:rnsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       
+    elsif params[:minbdsearch].present? && params[:maxbdsearch].present?
+      @pets = Pet.rangebdsearch(params[:minbdsearch], params[:maxbdsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
+      
+    elsif params[:minbdsearch].present?
+      @pets = Pet.minbdsearch(params[:minbdsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
+      
+    elsif params[:maxbdsearch].present?
+      @pets = Pet.maxbdsearch(params[:maxbdsearch]).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
+      
     else
       @pets = Pet.includes(:user).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
     end
@@ -137,7 +146,7 @@ class UsersController < ApplicationController
   
   def verification
     @users = User.includes(:pet)
-    @pets = Pet.includes(:user)
+    @pets = Pet.includes(:user).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
   end
   
   def edit

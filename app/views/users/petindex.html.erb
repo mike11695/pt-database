@@ -5,9 +5,11 @@
       <p class="text-center">Only pets that have been verified will show here.</p>
       <p class="text-center">To find a specific pet, please use the <%= link_to "home page", root_path %>.</p>
       <br/>
+      <h4><%= will_paginate @pets, class: 'text-center' %></h4>
+      <br>
       <ul class="list-unstyled">
         <% @pets.each do |pet| %>
-        <% if pet.verified == true && pet.user.banned == false %>
+        <% if pet.verified == true && (pet.user.banned != false && pet.user.banned != nil) %>
           <li>
             <div class="well row <%= cycle('white-bg', '') %>">
               <div class="col-sm-12 text-center">

@@ -73,6 +73,15 @@
         <%= submit_tag "Search!", :name => nil %>
       <% end %>
     </div>
+    <div class="well search-well">
+      <h3>Search by HSD</h3>
+      <%= form_tag pets_path, :method => :get do |f| %>
+        <%= text_field_tag :minbdsearch, params[:minbdsearch], placeholder: "Min HSD", class: 'form-control' %>
+        <%= text_field_tag :maxbdsearch, params[:maxbdsearch], placeholder: "Max HSD", class: 'form-control' %>
+        <br/>
+        <%= submit_tag "Search!", :name => nil %>
+      <% end %>
+    </div>
   </div>
   <div class="divider">
     <div class="center">
