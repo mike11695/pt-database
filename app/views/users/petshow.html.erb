@@ -1,78 +1,80 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <% if @pet.user.banned? %>
-        <h1 class="text-center">Opps!</h4>
-        <p class="text-center">This owner of this pet has been banned.  Nothing to see here, move along.</p>
-      <% else %>
-        <% if @pet.verified == true || admin_signed_in? %>
-          <h4 class="text-center"><%= link_to user_path(@pet.user.id) do %><%= @pet.user.username %>'s<% end %> Pet</h4>
-          <div class="well text-center">
-            <div class="float-right">
-              <% if @pet.uft == true %>
-                <span class="label label-success">UFT</span>
+      <% if @pet.user %>
+        <% if @pet.user.banned? %>
+          <h1 class="text-center">Opps!</h4>
+          <p class="text-center">This owner of this pet has been banned.  Nothing to see here, move along.</p>
+        <% else %>
+          <% if @pet.verified == true || admin_signed_in? %>
+            <h4 class="text-center"><%= link_to user_path(@pet.user.id) do %><%= @pet.user.username %>'s<% end %> Pet</h4>
+            <div class="well text-center">
+              <div class="float-right">
+                <% if @pet.uft == true %>
+                  <span class="label label-success">UFT</span>
+                <% end %>
+                <% if @pet.ufa == true %>
+                  <span class="label label-success">UFA</span>
+                <% end %>
+                <% if @pet.uc == true %>
+                  <span class="label label-success">UC</span>
+                <% end %>
+                <% if @pet.rw == true %>
+                  <span class="label label-success">RW</span>
+                <% end %>
+                <% if @pet.rn == true %>
+                  <span class="label label-success">RN</span>
+                <% end %>
+                <% if @pet.hsd >= 250 %>
+                  <span class="label label-success">BD</span>
+                <% elsif @pet.hsd <= 249 && @pet.hsd >= 100 %>
+                  <span class="label label-success">St. BD</span>
+                <% end %>
+              </div>
+              <br/>
+              <% link = "http://www.neopets.com/petlookup.phtml?pet=" + @pet.name %>
+              <%= link_to image_tag("http://pets.neopets.com/cpn/" + @pet.name + "/1/5.png", class: 'pet-show-img'), link %>
+              <h1><%= @pet.name %></h1>
+              <h5><%= @pet.color %> <%= @pet.species %></h5>
+              <h5><%= sanitize @pet.description, tags: %w(), attributes: %w() %></h5>
+              <hr class="style-one"/>
+              <% if @pet.hsd > 0 %>
+                <% if @pet.level %>
+                  <p>Level: <%= @pet.level %></p>
+                <% end %>
+                <% if @pet.hp %>
+                  <p>Hit Points: <%= @pet.hp %></p>
+                <% end %>
+                <% if @pet.strength %>
+                  <p>Strength: <%= @pet.strength %></p>
+                <% end %>
+                <% if @pet.defence %>
+                  <p>Defence: <%= @pet.defence %></p>
+                <% end %>
+                <% if @pet.movement %>
+                  <p>Movement: <%= @pet.movement %></p>
+                <% end %>
+                <p>HSD: <%= @pet.hsd %></p>
               <% end %>
-              <% if @pet.ufa == true %>
-                <span class="label label-success">UFA</span>
-              <% end %>
-              <% if @pet.uc == true %>
-                <span class="label label-success">UC</span>
-              <% end %>
-              <% if @pet.rw == true %>
-                <span class="label label-success">RW</span>
-              <% end %>
-              <% if @pet.rn == true %>
-                <span class="label label-success">RN</span>
-              <% end %>
-              <% if @pet.hsd >= 250 %>
-                <span class="label label-success">BD</span>
-              <% elsif @pet.hsd <= 249 && @pet.hsd >= 100 %>
-                <span class="label label-success">St. BD</span>
-              <% end %>
-            </div>
-            <br/>
-            <% link = "http://www.neopets.com/petlookup.phtml?pet=" + @pet.name %>
-            <%= link_to image_tag("http://pets.neopets.com/cpn/" + @pet.name + "/1/5.png", class: 'pet-show-img'), link %>
-            <h1><%= @pet.name %></h1>
-            <h5><%= @pet.color %> <%= @pet.species %></h5>
-            <h5><%= sanitize @pet.description, tags: %w(), attributes: %w() %></h5>
-            <hr class="style-one"/>
-            <% if @pet.hsd > 0 %>
-              <% if @pet.level %>
-                <p>Level: <%= @pet.level %></p>
-              <% end %>
-              <% if @pet.hp %>
-                <p>Hit Points: <%= @pet.hp %></p>
-              <% end %>
-              <% if @pet.strength %>
-                <p>Strength: <%= @pet.strength %></p>
-              <% end %>
-              <% if @pet.defence %>
-                <p>Defence: <%= @pet.defence %></p>
-              <% end %>
-              <% if @pet.movement %>
-                <p>Movement: <%= @pet.movement %></p>
-              <% end %>
-              <p>HSD: <%= @pet.hsd %></p>
-            <% end %>
-            <% if admin_signed_in? %>
-              <p><%= link_to "Edit Pet", {controller: "pets", action: "edit", user_id: @pet.user.id, id: @pet.id }, class: 'btn btn-primary' %>
-              <%= link_to "Delete Pet", {controller: :pets, action: :destroy, user_id: @pet.user.id, id: @pet.id }, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-danger' %></p>
-            <% else %>
-              <% if user_signed_in? %>
-              <% if current_user.id == @pet.user.id %>
+              <% if admin_signed_in? %>
                 <p><%= link_to "Edit Pet", {controller: "pets", action: "edit", user_id: @pet.user.id, id: @pet.id }, class: 'btn btn-primary' %>
                 <%= link_to "Delete Pet", {controller: :pets, action: :destroy, user_id: @pet.user.id, id: @pet.id }, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-danger' %></p>
               <% else %>
-                <%= link_to "Report Pet", new_report_path, class: 'btn btn-danger' %>
+                <% if user_signed_in? %>
+                <% if current_user.id == @pet.user.id %>
+                  <p><%= link_to "Edit Pet", {controller: "pets", action: "edit", user_id: @pet.user.id, id: @pet.id }, class: 'btn btn-primary' %>
+                  <%= link_to "Delete Pet", {controller: :pets, action: :destroy, user_id: @pet.user.id, id: @pet.id }, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-danger' %></p>
+                <% else %>
+                  <%= link_to "Report Pet", new_report_path, class: 'btn btn-danger' %>
+                <% end %>
               <% end %>
-            <% end %>
-            <% end %>
-          </div>
-          <%= link_to "Back", :back %>
-        <% else %>
-          <h1 class="text-center">Opps!</h1>
-          <p class="text-center">This pet is currently awaiting verification</p>
+              <% end %>
+            </div>
+            <%= link_to "Back", :back %>
+          <% else %>
+            <h1 class="text-center">Opps!</h1>
+            <p class="text-center">This pet is currently awaiting verification</p>
+          <% end %>
         <% end %>
       <% end %>
     </div>

@@ -169,6 +169,11 @@ class UsersController < ApplicationController
   end
   
   def destroy
+    @user = User.find(params[:id])
+    @pets = Pet.includes(:user).all
+    @user.pets.each do |pet|
+      pet.destroy
+    end
     User.find(params[:id]).destroy
     flash[:success] = "User deleted."
     redirect_to users_path
@@ -176,7 +181,7 @@ class UsersController < ApplicationController
   
   private
     def user_params
-      params.require(:user).permit(:username, :banned)
+      params.require(:user).permit(:id, :username, :banned)
     end
   
 end

@@ -15,7 +15,7 @@
         <% end %>
         <hr class="style-one"/>
         <% @pets.each do |pet| %>
-          <% if pet.user.id == @user.id %>
+          <% if pet.user_id == @user.id %>
             <% if pet.verified == true %>
               <div class="inline-pets">
                 <%= link_to controller: "users", action: "petshow", id: pet.id do %>
