@@ -6,7 +6,7 @@
           <h1 class="text-center">Opps!</h4>
           <p class="text-center">This owner of this pet has been banned.  Nothing to see here, move along.</p>
         <% else %>
-          <% if @pet.verified == true || admin_signed_in? %>
+          <% if @pet.verified == true || admin_signed_in? || (user_signed_in? && @pet.user.id == current_user.id) %>
             <h4 class="text-center"><%= link_to user_path(@pet.user.id) do %><%= @pet.user.username %>'s<% end %> Pet</h4>
             <div class="well text-center">
               <div class="float-right">
