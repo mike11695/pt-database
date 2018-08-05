@@ -39,7 +39,7 @@ class Pet < ActiveRecord::Base
   end
   
   def self.rnrwsearch(rwsearch, rnsearch)
-    where(:rw => rwsearch != "false") || where(:rn => rnsearch != "false")
+    where("rw = ? OR rn = ?", true, true)
   end
   
   def self.rwsearch(rwsearch)
