@@ -115,7 +115,7 @@ class PetsController < ApplicationController
       end
       
       if @pet.save
-        flash[:success] = "Pet submitted!  It won't appear for you or other users until it is verified."
+        flash[:success] = "Pet submitted!  It won't appear for other users until it is verified."
         redirect_to user_path( params[:user_id] )
       else
         flash[:danger] = @pet.errors.full_messages.join(", ")

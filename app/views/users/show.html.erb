@@ -22,6 +22,12 @@
                   <%= image_tag "http://pets.neopets.com/cpn/" + pet.name + "/1/6.png", class: 'user-index-avatar' %>
                 <% end %>
               </div>
+            <% elsif pet.verified == false && user_signed_in? && current_user.id == @user.id %>
+               <div class="inline-pets">
+                <%= link_to controller: "users", action: "petshow", id: pet.id do %>
+                  <%= image_tag "http://pets.neopets.com/cpn/" + pet.name + "/1/6.png", class: 'user-index-avatar-red' %>
+                <% end %>
+              </div>
             <% end %>
           <% end %>
         <% end %>

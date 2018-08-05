@@ -38,6 +38,10 @@ class Pet < ActiveRecord::Base
     where(:uc => ucsearch != "false")
   end
   
+  def self.rnrwsearch(rwsearch, rnsearch)
+    where(:rw => rwsearch != "false") || where(:rn => rnsearch != "false")
+  end
+  
   def self.rwsearch(rwsearch)
     where(:rw => rwsearch != "false")
   end

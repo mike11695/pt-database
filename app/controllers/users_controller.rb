@@ -109,9 +109,7 @@ class UsersController < ApplicationController
       @pets = Pet.ufasearch(params[:ufasearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:rwsearch].present? && params[:rnsearch].present?
-      @rws = Pet.rwsearch(params[:rwsearch]).where(verified: true).order("id DESC")
-      @rns = Pet.rnsearch(params[:rnsearch]).where(verified: true).order("id DESC")
-      @pets = @rws + @rns
+      @pets = Pet.rnrwsearch(params[:rwsearch], params[:rnsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
     elsif params[:rwsearch].present?
       @pets = Pet.rwsearch(params[:rwsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
@@ -137,6 +135,15 @@ class UsersController < ApplicationController
   def show
     @user = User.find( params[:id] )
     @pets = Pet.includes(:user)
+    if user_signed_in? && current_user.id == @user.id
+      @pets.each do |pet|
+        if pet.verified == false
+          flash.now[:danger] = "Looks like you have some unverified pets.  If they have been unverified for a while, 
+                  make sure they're listed as UFT or UFA on their lookup!"
+          break
+        end
+      end
+    end
   end
   
   #Get to /pets/:id
