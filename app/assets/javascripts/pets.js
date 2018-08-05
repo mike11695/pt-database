@@ -38,29 +38,6 @@ $(document).on('turbolinks:load', function(){
             submitBtn.prop('disabled', false).val("Submit Pet");
         }
         else {
-            hp = parseInt(hp);
-            strength = parseInt(strength);
-            defence = parseInt(defence);
-            
-            //Verify the stats    
-            if(hp == undefined) {
-                hp = 0;
-            }
-            
-            if(strength == undefined) {
-                strength = 0;
-            }
-            
-            if(defence == undefined) {
-                defence = 0;
-            }
-             
-            //Add up the stats   
-            var hsd = hp + strength + defence;
-            
-            //Append to form
-            theForm.append( $('<input type="hidden" name="pet[hsd]">').val(hsd) );
-            
             //Submit the form
             theForm.submit();
         }

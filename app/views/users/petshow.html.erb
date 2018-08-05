@@ -37,22 +37,24 @@
             <h5><%= @pet.color %> <%= @pet.species %></h5>
             <h5><%= sanitize @pet.description, tags: %w(), attributes: %w() %></h5>
             <hr class="style-one"/>
-            <% if @pet.level %>
-              <p>Level: <%= @pet.level %></p>
+            <% if @pet.hsd > 0 %>
+              <% if @pet.level %>
+                <p>Level: <%= @pet.level %></p>
+              <% end %>
+              <% if @pet.hp %>
+                <p>Hit Points: <%= @pet.hp %></p>
+              <% end %>
+              <% if @pet.strength %>
+                <p>Strength: <%= @pet.strength %></p>
+              <% end %>
+              <% if @pet.defence %>
+                <p>Defence: <%= @pet.defence %></p>
+              <% end %>
+              <% if @pet.movement %>
+                <p>Movement: <%= @pet.movement %></p>
+              <% end %>
+              <p>HSD: <%= @pet.hsd %></p>
             <% end %>
-            <% if @pet.hp %>
-              <p>Hit Points: <%= @pet.hp %></p>
-            <% end %>
-            <% if @pet.strength %>
-              <p>Strength: <%= @pet.strength %></p>
-            <% end %>
-            <% if @pet.defence %>
-              <p>Defence: <%= @pet.defence %></p>
-            <% end %>
-            <% if @pet.movement %>
-              <p>Movement: <%= @pet.movement %></p>
-            <% end %>
-            <p>HSD: <%= @pet.hsd %></p>
             <% if admin_signed_in? %>
               <p><%= link_to "Edit Pet", {controller: "pets", action: "edit", user_id: @pet.user.id, id: @pet.id }, class: 'btn btn-primary' %>
               <%= link_to "Delete Pet", {controller: :pets, action: :destroy, user_id: @pet.user.id, id: @pet.id }, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-danger' %></p>

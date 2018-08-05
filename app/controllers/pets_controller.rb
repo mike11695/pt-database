@@ -90,6 +90,30 @@ class PetsController < ApplicationController
       # so name is formatted correctly as it appears on site
       @pet.name = data["custom_pet"]["name"]
       
+      if @pet.hp == nil
+        @pet.hp = 0
+      end
+      if @pet.strength == nil
+        @pet.strength = 0
+      end
+      if @pet.defence == nil
+        @pet.defence = 0
+      end
+      if @pet.movement == nil
+        @pet.movement = 0
+      end
+      
+      # set the hsd
+      if @pet.strength > 750 && @pet.defence > 750
+        @pet.hsd = @pet.hp + 750 + 750
+      elsif @pet.strength > 750
+        @pet.hsd = @pet.hp + 750 + @pet.defence
+      elsif @pet.defence > 750
+        @pet.hsd = @pet.hp + 750 + @pet.strength
+      else
+        @pet.hsd =  @pet.hp + @pet.defence + @pet.strength
+      end
+      
       if @pet.save
         flash[:success] = "Pet submitted!  It won't appear for you or other users until it is verified."
         redirect_to user_path( params[:user_id] )
@@ -191,9 +215,38 @@ class PetsController < ApplicationController
       @pet.name = data["custom_pet"]["name"]
       
       if @pet.update_attributes(pet_params)
-        flash[:success] = "Pet updated!"
-        #Redirect user to pet profile page
-        redirect_to controller: "users", action: "petshow", id: @pet.id
+        if @pet.hp == nil
+          @pet.hp = 0
+        end
+        if @pet.strength == nil
+          @pet.strength = 0
+        end
+        if @pet.defence == nil
+          @pet.defence = 0
+        end
+        if @pet.movement == nil
+          @pet.movement = 0
+        end
+        
+        # set the hsd
+        if @pet.strength > 750 && @pet.defence > 750
+          @pet.hsd = @pet.hp + 750 + 750
+        elsif @pet.strength > 750
+          @pet.hsd = @pet.hp + 750 + @pet.defence
+        elsif @pet.defence > 750
+          @pet.hsd = @pet.hp + 750 + @pet.strength
+        else
+          @pet.hsd =  @pet.hp + @pet.defence + @pet.strength
+        end
+        
+        if @pet.update_attributes(pet_params)
+          flash[:success] = "Pet updated!"
+          #Redirect user to pet profile page
+          redirect_to controller: "users", action: "petshow", id: @pet.id
+        else 
+          render action: :edit
+          Rails.logger.info(@pet.errors.messages.inspect)
+        end
       else 
         render action: :edit
         Rails.logger.info(@pet.errors.messages.inspect)
