@@ -136,7 +136,8 @@ class UsersController < ApplicationController
     @user = User.find( params[:id] )
     @pets = Pet.includes(:user)
     if user_signed_in? && current_user.id == @user.id
-      @pets.each do |pet|
+      unverified = false
+      @user.pets.each do |pet|
         if pet.verified == false
           flash.now[:danger] = "Looks like you have some unverified pets.  If they have been unverified for a while, 
                   make sure they're listed as UFT or UFA on their lookup!"
