@@ -59,7 +59,8 @@ class Pet < ActiveRecord::Base
   end
   
   def self.namelengthsearch(namelengthsearch)
-    where("length(name) LIKE ?", "%#{namelengthsearch}%")
+    length = namelengthsearch.to_i
+    where("length(name) LIKE ?", length)
   end
   
   self.per_page = 20
