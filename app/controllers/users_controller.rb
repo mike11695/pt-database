@@ -126,6 +126,9 @@ class UsersController < ApplicationController
     elsif params[:maxbdsearch].present?
       @pets = Pet.maxbdsearch(params[:maxbdsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
       
+    elsif params[:namelengthsearch].present?
+      @pets = Pet.namelengthsearch(params[:namelengthsearch]).where(verified: true).paginate(:page => params[:page]).order("id DESC")
+      
     else
       @pets = Pet.includes(:user).where(verified: true).paginate(:page => params[:page]).order("id DESC")
     end

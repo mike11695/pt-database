@@ -74,6 +74,15 @@
       <% end %>
     </div>
     <div class="well search-well">
+      <h3>Search by Name Length</h3>
+      <%= form_tag pets_path, :method => :get do |f| %>
+        <% length_array = ['', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] %>
+        <%= select_tag(:namelengthsearch, options_for_select(length_array), class: 'form-control') %>
+        <br/>
+        <%= submit_tag "Search!", :name => nil %>
+      <% end %>
+    </div>
+    <div class="well search-well">
       <h3>Search by HSD</h3>
       <%= form_tag pets_path, :method => :get do |f| %>
         <%= text_field_tag :minbdsearch, params[:minbdsearch], placeholder: "Min HSD", class: 'form-control' %>

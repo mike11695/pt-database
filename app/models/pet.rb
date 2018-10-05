@@ -58,6 +58,10 @@ class Pet < ActiveRecord::Base
     where(:ufa => ufasearch != "false")
   end
   
+  def self.namelengthsearch(namelengthsearch)
+    where("length(name) LIKE ?", namelengthsearch)
+  end
+  
   self.per_page = 20
   
 end
