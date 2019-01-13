@@ -9,6 +9,12 @@ class Pet < ActiveRecord::Base
     obscenity: true
   
   belongs_to :user
+  has_many :taggings
+  has_many :tags, through: :taggings
+  
+  def tag_list
+    tags.join(", ")
+  end
   
   def self.namesearch(namesearch)
     where("name LIKE ?", "%#{namesearch}%") 

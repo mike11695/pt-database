@@ -70,6 +70,11 @@
               </div>
               <br/>
               <div class="form-group">
+                <%= f.label :tag_list %>: Tags relating to pet?  Feel free to leave blank.
+                <%= f.text_area :tag_list, class: 'form-control' %>
+              </div>
+              <br/>
+              <div class="form-group">
                 <%= f.submit "Update Pet", class: 'btn btn-primary', id: 'form-signup-btn' %>
                 <%= f.hidden_field :id, value: @pet.id %>
                 <%= f.hidden_field :name, value: @pet.name %>
