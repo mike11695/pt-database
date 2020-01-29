@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  
-  before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :banned?
-  before_filter :convo
-  
+
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :banned?
+  before_action :convo
+
   def banned?
     if current_user.present? && current_user.banned?
       sign_out current_user
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
-  
+
   def convo
     @unread = 0
     @users = User.includes(:profile)
