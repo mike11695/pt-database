@@ -1,15 +1,63 @@
 <% if user_signed_in? || admin_signed_in? %>
   <% if admin_signed_in? || current_user.id == @pet.user.id %>
-    <div class="container">  
+    <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <h1 class="text-center">Edit <%= @pet.name %></h1>
           <p class="text-center">Use this if your pet happened to change colors, gained stats, etc.</p>
           <div class="well">
+            <% if admin_signed_in? %>
+            <div class="form-group">
+              <%= f.label :name %>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+            <% end %>
             <%= form_for @pet, url: user_pet_path, html: {id: 'pet_form'} do |f| %>
               <div class="form-group">
                 <%= f.label :gender %>
                 <%= f.select :gender, [['Male'], ['Female']], class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :species %>
+                <%= f.select :species, [['Acara'], ['Aisha'], ['Blumaroo'],
+                  ['Bori'], ['Bruce'], ['Buzz'], ['Chia'], ['Chomby'],
+                  ['Cybunny'], ['Draik'], ['Elephante'], ['Eyrie'],
+                  ['Flotsam'], ['Gelert'], ['Gnorbu'], ['Grarrl'],
+                  ['Grundo'], ['Hissi'], ['Ixi'], ['Jetsam'], ['Jubjub'],
+                  ['Kacheek'], ['Kau'], ['Kiko'], ['Koi'], ['Korbat'],
+                  ['Kougra'], ['Krawk'], ['Kyrii'], ['Lenny'], ['Lupe'],
+                  ['Lutari'], ['Meerca'], ['Moehog'], ['Mynci'],
+                  ['Nimmo'], ['Ogrin'], ['Peophin'], ['Poogle'],
+                  ['Pteri'], ['Quiggle'], ['Ruki'], ['Scorchio'],
+                  ['Shoyru'], ['Skeith'], ['Techo'], ['Tonu'],
+                  ['Tuskaninny'], ['Uni'], ['Usul'], ['Vandagyre'],
+                  ['Wocky'], ['Xweetok'], ['Yurble'], ['Zafara']], class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :color %>
+                <%= f.select :color, [['8-Bit'], ['Agueena'], ['Alien'], ['Apple'],
+                  ['Asparagus'], ['Aubergine'], ['Avocado'], ['Baby'], ['Biscuit'],
+                  ['Blue'], ['Blueberry'], ['Brown'], ['Burlap'], ['Camouflage'], ['Candy'], ['Carrot'],
+                  ['Checkered'], ['Chocolate'], ['Chokato'], ['Christmas'],
+                  ['Clay'], ['Cloud'], ['Coconut'], ['Custard'], ['Darigan'],
+                  ['Desert'], ['Dimensional'], ['Disco'], ['Durian'],
+                  ['Elderlyboy'], ['Elderlygirl'], ['Electric'], ['Eventide'],
+                  ['Faerie'], ['Fire'], ['Garlic'], ['Ghost'], ['Glowing'],
+                  ['Gold'], ['Gooseberry'], ['Grape'], ['Green'], ['Grey'],
+                  ['Halloween'], ['Ice'], ['Invisible'], ['Island'], ['Jelly'],
+                  ['Lemon'], ['Lime'], ['Magma'], ['Mallow'], ['Maractite'],
+                  ['Maraquan'], ['Marble'], ['Mosaic'], ['Msp'], ['Mutant'], ['Oil Paint'], ['Onion'], ['Orange'],
+                  ['Origami'], ['Pastel'], ['Pea'], ['Peach'], ['Pear'], ['Pepper'],
+                  ['Pineapple'], ['Pink'], ['Pirate'], ['Plum'], ['Plushie'],
+                  ['PolkaDot'], ['Purple'], ['Quigukiboy'], ['Quigukigirl'],
+                  ['Rainbow'], ['Red'], ['Relic'], ['Robot'], ['Royalboy'],
+                  ['Royalgirl'], ['Shadow'], ['Silver'], ['Sketch'], ['Skunk'],
+                  ['Snot'], ['Snow'], ['Speckled'], ['Split'], ['Sponge'],
+                  ['Spotted'], ['Starry'], ['Stealthy'], ['Steampunk'], ['Strawberry'],
+                  ['Striped'], ['SwampGas'], ['Thornberry'], ['Tomato'], ['Toy'],
+                  ['Transparent'], ['Tyrannian'], ['Ummagine'], ['UsukiBoy'],
+                  ['UsukiGirl'], ['Water'], ['White'], ['Woodland'], ['Wraith'],
+                  ['Yellow'], ['Zombie']], class: 'form-control' %>
               </div>
               <div class="form-group">
                 <%= f.label :level %>: Level and other stats are optional
