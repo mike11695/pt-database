@@ -6,13 +6,13 @@
           <h1 class="text-center">Edit <%= @pet.name %></h1>
           <p class="text-center">Use this if your pet happened to change colors, gained stats, etc.</p>
           <div class="well">
-            <% if admin_signed_in? %>
-            <div class="form-group">
-              <%= f.label :name %>
-              <%= f.text_field :name, class: 'form-control' %>
-            </div>
-            <% end %>
             <%= form_for @pet, url: user_pet_path, html: {id: 'pet_form'} do |f| %>
+              <% if admin_signed_in? %>
+              <div class="form-group">
+                <%= f.label :name %>
+                <%= f.text_field :name, class: 'form-control' %>
+              </div>
+              <% end %>
               <div class="form-group">
                 <%= f.label :gender %>
                 <%= f.select :gender, [['Male'], ['Female']], class: 'form-control' %>
