@@ -19,5 +19,3 @@ if ENV['RAILS_ENV'] == 'production'  # don't bother on dev
 end
 
 require File.join(File.dirname(__FILE__), 'boot')
-
-ruby ENV['CUSTOM_RUBY_VERSION'] || '2.5.1'
