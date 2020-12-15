@@ -1,4 +1,5 @@
 class ConversationsController < ApplicationController
+  #Credit to medium.com for the guide on how to implement conversations and messages
   def index
     @users = User.includes(:profile)
     # delete conversations if a user no longer exists
