@@ -217,7 +217,7 @@ class PetsController < ApplicationController
       # so name is formatted correctly as it appears on site
       #@pet.name = data["custom_pet"]["name"]
 
-      if @pet.update_attributes(pet_params)
+      if @pet.update(pet_params)
         if @pet.hp == nil
           @pet.hp = 0
         end
@@ -242,7 +242,7 @@ class PetsController < ApplicationController
           @pet.hsd =  @pet.hp + @pet.defence + @pet.strength
         end
 
-        if @pet.update_attributes(pet_params)
+        if @pet.update(pet_params)
           flash[:success] = "Pet updated!"
           #Redirect user to pet profile page
           redirect_to controller: "users", action: "petshow", id: @pet.id
