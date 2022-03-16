@@ -168,7 +168,7 @@ class UsersController < ApplicationController
     #Retrieve user from database
     @user = User.find_by_id( params[:id] )
     #Mass assign edited profile attributes and save (update)
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       flash[:success] = "User updated!"
       #Redirect user to profile page
       redirect_to user_path(id: params[:id] )

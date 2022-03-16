@@ -38,7 +38,7 @@ class ProfilesController < ApplicationController
     #Retrieve user's profile
     @profile = @user.profile
     #Mass assign edited profile attributes and save (update)
-    if @profile.update_attributes(profile_params)
+    if @profile.update(profile_params)
       flash[:success] = "Profile updated!"
       #Redirect user to profile page
       redirect_to user_path(id: params[:user_id] )

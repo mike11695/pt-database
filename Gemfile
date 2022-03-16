@@ -1,49 +1,49 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.0'
+gem 'rails', '7.0.2.3'
 
 # Use Puma as the app server
-gem 'puma', '3.7.0'
+gem 'puma'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '5.0.6'
+gem 'sass-rails'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '3.0.0'
+gem 'uglifier'
 
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '4.2.1'
+gem 'coffee-rails'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '4.1.1'
+gem 'jquery-rails'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '5.0.0'
+gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '2.5.0'
+gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '3.0'
+# gem 'redis'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '3.1.7'
+# gem 'bcrypt'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 # Use Twitter Bootstrap library for front-end UI and layout
-gem 'bootstrap-sass', '3.3.7'
+gem 'bootstrap-sass'
 
 # Use Hirb gem for better console data presentation
-gem 'hirb', '0.7.3'
+gem 'hirb'
 
 # Use devise to make users
 gem 'devise'
 
 # Use paperclip for image upload
-gem 'paperclip', '4.3.6'
+gem 'paperclip'
 
 # Jquery to handle pet form
 gem 'jquery-ui-rails'
@@ -53,7 +53,7 @@ gem 'sunspot_rails'
 gem 'sunspot_solr'
 
 # Use paginate to create pages for index
-gem 'will_paginate', '3.1.0'
+gem 'will_paginate'
 
 # Use Obscenity to filter profanity
 gem 'obscenity'
@@ -69,17 +69,16 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
-  gem 'listen', '3.0.5'
+  gem 'listen'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '2.0.0'
+  gem 'spring', '3.0.0'
 end
 
 group :production do
   # Use the PostgreSQL gem for Heroku production servers
-  gem 'pg', '0.18.4'
+  gem 'pg'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', :platforms => [:mingw, :mswin, :jruby]
 
-ruby "2.5.1"
+ruby "3.1.0"
